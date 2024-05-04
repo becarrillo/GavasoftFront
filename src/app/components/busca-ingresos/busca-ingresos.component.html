@@ -1,0 +1,126 @@
+<app-logged-in-user-menu-navbar [theme]="theme" (themeTogglerEvent)="toggleTheme($event)">
+</app-logged-in-user-menu-navbar>
+<div
+    [ngClass]="{'flex': true, 'flex-col': true, 'bg-fuchsia-50': theme==='light',
+    'bg-zinc-700': theme==='dark', 'h-full': true, 'overflow-y-auto': true
+}">
+    <div [ngClass]="{
+        'flex flex-col': true,  'px-2': true, 'mx-auto': true, 'pt-36': true, 'space-y-20': true,
+        'md:space-y-32': true, 'h-screen': true, 'md:w-5/6': true, 'lg:space-y-40': true,
+        'xl:space-y-40': true, 'xl:w-9/12': true, '2xl:space-y-40':true, 'relative': true
+    }">
+        <div class="flex flex-col self-center space-y-11 mt-0 mb-1.5 px-3.5 w-11/12 py-1 md:mt-5 lg:mt-5 xl:mt-5 2xl:mt-5">
+            <div [ngClass]="{
+                    'text-center': true, 'text-lg': true,
+                    'text-2-smooky-black': theme==='light',
+                    'text-0-cool-gray': theme==='dark'
+                }"
+            >
+                Bienvenido(a)
+                <span class="italic">Ramón Arteta</span>
+            </div>
+
+            <div class="flex flex-col-reverse px-0 py-3 lg:flex-row
+                    lg:space-x-2 lg:w-full xl:flex-row 
+                    xl:space-x-28 xl:w-full 2xl:flex-row
+                    2xl:space-x-64 2xl:w-11/12"
+            >
+                <form action="./resultadosIngresosCliente.html" method="get"
+                    [ngClass]="{
+                        'grid grid-cols-2': true, 'grid-rows-6': true, 'gap-x-3.5': true,
+                        'gap-y-1.5': true, 'rounded-md': true, 'bg-slate-400': theme==='dark',
+                        'shadow-sm': true, 'shadow-zinc-400': true, 'text-center': true,
+                        'mt-5': true, 'px-3.5': true, 'py-6': true, 'w-auto': true,
+                        'md:grid-rows-5': true, 'md:mt-0': true, 'md:px-5': true,
+                        'lg:grid-rows-5': true, 'lg:mt-0': true, 'lg:px-6': true,
+                        'xl:grid-rows-5': true, 'xl:mt-0': true,'xl:px-8': true,
+                        '2xl:grid-rows-5': true, '2xl:mt-0': true, '2xl:px-8': true
+                    }"
+                >
+                    <h3 [ngClass]="['col-span-2', 'self-center', 'text-2xl', 'font-bold', 'mb-8']">
+                        BÚSQUEDA INGRESOS DEL SPA
+                    </h3>
+                    <select [ngClass]="[
+                            'col-span-2', 'rounded-sm', 'bg-white', 'text-sm', 'w-28', 'h-9', 'px-1', 'shadow-sm',
+                            'shadow-zinc-500', 'md:col-span-1', 'md:w-40', 'lg:col-span-1', 'lg:w-44', 'xl:col-span-1',
+                            'xl:w-40', '2xl:col-span-1', '2xl:w-40', 'focus:z-10', 'focus:w-36', 'focus:md:w-40'
+                        ]"
+                        id="filtroIngreso" onchange="
+                            document.activeElement.value !== 'Consultar por fechas' ? (
+                            document.querySelector('#date-input-0').toggleAttribute('disabled', true),
+                            document.querySelector('#date-input-1').toggleAttribute('disabled', true),
+                            document.querySelector('#date-input-0').setAttribute(
+                                'class',
+                                'rounded-sm pl-2 h-8 text-sm text-zinc-600'
+                            ),
+                            document.querySelector('#date-input-1').setAttribute(
+                                'class',
+                                'rounded-sm pl-2 h-8 text-sm text-zinc-600'
+                            )
+                        ): (
+                            document.querySelector('#date-input-0').toggleAttribute('disabled', false),
+                            document.querySelector('#date-input-1').toggleAttribute('disabled', false),
+                            document.querySelector('#date-input-0').setAttribute(
+                                'class',
+                                'rounded-sm shadow-sm shadow-zinc-500 pl-2 h-8 text-sm'
+                            ),
+                            document.querySelector('#date-input-1').setAttribute(
+                                'class',
+                                'rounded-sm shadow-sm shadow-zinc-500 pl-2 h-8 text-sm'
+                            )
+                                
+                        )  
+                    ">
+                        <option>Consultar por fechas</option>
+                        <option>Consultar por número de documento</option>
+                    </select>
+                    <span class="
+                            col-span-2 inline-block text-sm text-yellow-700 w-36
+                            md:col-span-1 md:w-48 lg:col-span-1 lg:w-48 xl:col-span-1
+                            xl:w-48 2xl:col-span-1 2xl:w-48"
+                    >
+                        número documento es requerido para ambas opciones de búsqueda
+                    </span>
+                    <div class="flex flex-col-reverse">
+                        <label for="date-input-0" class="text-sm italic ml-1.5">Fecha inicial</label>
+                        <input class="rounded-sm shadow-sm shadow-zinc-500 pl-1.5 
+                                h-8 text-sm focus:scale-x-110 default:w-28" id="date-input-0" type="date" />
+                    </div>
+                    <div class="flex flex-col-reverse">
+                        <label for="date-input-1" class="text-sm italic ml-1.5">Fecha final</label>
+                        <input class="rounded-sm shadow-sm shadow-zinc-500 pl-1.5  
+                                h-8 text-sm md:w-40 focus:scale-x-110 default:w-28" id="date-input-1" type="date" />
+                    </div>
+
+                    <input class="col-span-2 rounded-sm shadow-sm shadow-zinc-500 pl-2 
+                              h-8 text-sm" id="number-id" placeholder="Número de documento del cliente" type="text" />
+                    <button [ngClass]="{
+                        'col-span-2': true, 'rounded-lg': true, 'bg-2-electric-blue': true, 'text-1-hookers-green': true,
+                        'w-full': true, 'h-10': true, 'px-5': true, 'py-1.5': true, 'hover:bg-cyan-500': theme==='dark',
+                        'hover:bg-cyan-400': theme==='light'
+                    }" id="submit" type="submit">
+                        BUSCAR
+                    </button>
+                </form>
+                <img
+                    src="../../../assets/woman-5515969_640.jpg"
+                    [ngClass]="{
+                        'self-center': true, 'rounded-md': true, 'mb-11': true, 'md:mb-2': true, 'lg:mb-1': true,
+                        'xl:mb-1': true, '2xl:mb-1': true, 'opacity-75': theme==='dark', 'z-0': true, 'relative': true
+                    }"
+                    width="315" />
+            </div>
+        </div>
+    </div>
+    <button
+        [routerLink]="'/menu-administrador'" routerLinkActive="router-link-active"
+        [ngClass]="[
+            'rounded-3xl', 'ring-2', 'ring-slate-200', 'bg-1-heliotrope', 'opacity-90',
+            'font-semibold', 'w-24', 'h-24', 'cursor-pointer', 'z-10', 'fixed', 'right-5',
+            'bottom-16', 'md:right-11', 'lg:right-11', 'xl:right-32', '2xl:right-32',
+            'hover:bg-cyan-500'
+        ]"
+    >
+        <h4>REGRESAR AL MENÚ</h4>
+    </button>
+</div>

@@ -1,0 +1,112 @@
+<app-logged-in-user-menu-navbar [rolName]="'Administrador'" [theme]="theme" (themeTogglerEvent)="toggleTheme($event)">
+</app-logged-in-user-menu-navbar>
+<div [ngClass]="{
+        'flex': true, 'flex-col': true, 'items-center': true,  'justify-center': true,
+        'space-y-7':true, 'min-h-screen': true, 'bg-zinc-700': theme==='dark',
+        'mt-28 md:mt-11 lg:mt-10 xl:mt-10 2xl:mt-10': true
+    }"
+>
+    <div class="grid grid-cols-1 rounded-md bg-transparent mx-auto">
+        <div class="justify-self-center w-11/12 p-4 shadow-sm shadow-zinc-500 md:w-8/12 lg:w-7/12 xl:w-5/12 2xl:w-5/12">
+            <div [ngClass]="{'block': true, 'bg-transparent':theme==='light', 'bg-zinc-300 text-white': theme==='dark',
+                    'shadow-md hover:shadow-xl': true, 'rounded-lg': true, 'overflow-hidden': true
+                }"  
+            >
+                <img
+                    class="
+                        lg:h-60
+                        xl:h-56
+                        md:h-64
+                        sm:h-72
+                        xs:h-72
+                        h-72
+                        rounded
+                        w-full
+                        object-cover object-center
+                        mb-4
+                    "
+                    src="https://picsum.photos/720/400" alt="Image Size 720x400"
+                />
+                <div class="p-4">
+                    <h2 [ngClass]="{
+                            'text-lg': true, 'text-black': theme==='dark',
+                            'text-1-hookers-green': theme==='light', 'font-semibold
+                            title-font ml-3 mb-4 whitespace-nowrap truncate ...': true
+                    }"
+                    >
+                        Depilación de bikini en láser
+                    </h2>
+
+                    <div [ngClass]="{
+                            'py-4 border-t border-b text-xs': true, 'text-gray-700': theme==='light',
+                            'text-zinc-900': theme==='dark'
+                        }"
+                    >
+                        <div class="grid grid-cols-6 gap-1 ml-3">
+                            <div class="col-span-2">
+                                Duración
+                                <span class="
+                                        inline-flex
+                                        items-center
+                                        justify-center
+                                        px-2
+                                        py-1
+                                        text-xs
+                                        font-bold
+                                        leading-none
+                                        text-white
+                                        bg-red-400
+                                        rounded-full
+                                    "
+                                >
+                                    00:40:00
+                                </span>
+                            </div>
+
+                            <div class="col-span-2">
+                                Precio
+                                <span class="
+                                        inline-flex
+                                        items-center
+                                        justify-center
+                                        px-2
+                                        py-1
+                                        text-xs
+                                        font-bold
+                                        leading-none
+                                        text-white
+                                        bg-green-400
+                                        rounded-full
+                                    "
+                                >
+                                    64990 COP
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-1.5 mt-2 pl-1">
+                        <h5 [ngClass]="{
+                                'font-medium': true, 'bg-neutral-300': theme==='dark',
+                                'text-0-inst-blue': theme==='dark', 'px-2.5': true,
+                                'py-0.5': true
+                            }"
+                        >Descripción del servicio</h5>
+                        <p [ngClass]="{
+                                'text-sm': true, 'text-gray-600': theme==='light', 'text-zinc-900': theme==='dark'
+                            }"
+                        >
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                            Id quia quisquam iure corrupti dignissimos tenetur, ipsam 
+                            quis itaque iusto consequuntur eaque, nihil unde earum harum 
+                            sit. Vel, corporis consequuntur. Totam?
+                        </p>    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-2 justify-self-center gap-x-5 mx-44 px-4 py-3 w-11/12 md:w-8/12 lg:w-7/12 xl:w-5/12 2xl:w-5/12">
+            <button class="rounded-sm bg-blue-600 text-white px-5 py-1 5 w-auto hover:bg-blue-500">Modificar</button>
+            <button class="rounded-sm bg-red-600 text-white px-5 py-1 5 w-auto hover:bg-red-500">Eliminar</button>
+        </div>
+    </div>
+</div>

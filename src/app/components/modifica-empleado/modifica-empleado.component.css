@@ -1,0 +1,5 @@
+.backdrop-container {
+    transition: ease-in;
+    transition-duration: 450ms;
+    backdrop-filter: blur(7px);
+}

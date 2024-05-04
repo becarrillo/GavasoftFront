@@ -1,0 +1,191 @@
+<app-logged-in-user-menu-navbar [rolName]="'Administrador'" [theme]="theme" (themeTogglerEvent)="toggleTheme($event)">
+</app-logged-in-user-menu-navbar>
+<div [ngClass]="{
+        'flex': true, 'flex-col': true, 'flex-col-reverse': calendarIsOpen, 'items-center': true, 'bg-zinc-700': theme==='dark',
+        'bg-white': theme==='light', 'mt-28': true, 'pt-4': true, 'gap-3': true,
+        'h-full': true, 'md:mt-12': true, 'lg:mt-11': true, 'xl:mt-11': true,
+        '2xl:mt-10': true
+    }
+">
+    <button [ngClass]="{'rounded-sm px-8 py-1.5 text-white': true, 'bg-zinc-500': theme==='light', 'bg-teal-700': theme==='dark'}" (click)="toggleCalendar()">
+        Calendario
+    </button>
+    
+    <div [ngClass]="{
+            'bg-transparent md:py-8 px-4 lg:max-w-7xl lg:mx-auto lg:px-8': true, 'collapse': !calendarIsOpen,
+            'text-gray-800': theme==='light' ,'text-white': theme==='dark'
+        }"
+    >
+        <div class="flex justify-around">
+            <button [ngClass]="'p-1'">
+                <img width="32" height="32" src="https://img.icons8.com/windows/32/left.png" alt="left"/>
+            </button>
+            
+            <p class="text-4xl font-bold  mb-8">Abril 2024</p>
+        </div>
+        
+        <div class="inline-flex flex-col space-y-1 items-start justify-start h-full w-full">
+            <div class="inline-flex space-x-28 items-start justify-start pr-24 h-full w-full">
+                <p class="w-12 h-full text-sm font-medium  uppercase">Dom</p>
+                <p class="w-12 h-full text-sm font-medium uppercase">Lun</p>
+                <p class="w-12 h-full text-sm font-medium uppercase">Mar</p>
+                <p class="w-12 h-full text-sm font-medium uppercase">Mie</p>
+                <p class="w-12 h-full text-sm font-medium uppercase">Jue</p>
+                <p class="w-12 h-full text-sm font-medium uppercase">Vie</p>
+                <p class="w-12 h-full text-sm font-medium uppercase">Sab</p>
+            </div>
+            <div class="flex flex-col items-start justify-start">
+                <div class="inline-flex items-center justify-start h-full w-full">
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="text-sm font-medium">01</p>
+                    </div>
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="text-sm font-medium ">02</p>
+                    </div>
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="text-sm font-medium">03</p>
+                    </div>
+                    <div
+                        class="flex flex-col  justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="text-sm font-medium ">4</p>
+                    </div>
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="text-sm font-medium ">5</p>
+                    </div>
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="text-sm font-medium ">6</p>
+                    </div>
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="text-sm font-medium">7</p>
+                    </div>
+                </div>
+                <div class="inline-flex items-center justify-start w-full h-full">
+                    <div
+                        class="flex items-start justify-start w-40 h-full hover:scale-105 pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="text-sm font-medium">8</p>
+                    </div>
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="text-sm font-medium">9</p>
+                    </div>
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="text-sm font-medium">10</p>
+                    </div>
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="text-sm font-medium">11</p>
+                    </div>
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="text-sm font-medium">12</p>
+                    </div>
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="text-sm font-medium">13</p>
+                    </div>
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="text-sm font-medium">14</p>
+                    </div>
+                </div>
+                <div class="inline-flex items-center justify-start w-full h-full">
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="text-sm font-medium">15</p>
+                    </div>
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="text-sm font-medium">16</p>
+                    </div>
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="text-sm font-medium">17</p>
+                    </div>
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="text-sm font-medium">18</p>
+                    </div>
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="text-sm font-medium">19</p>
+                    </div>
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="text-sm font-medium">20</p>
+                    </div>
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="text-sm font-medium">21</p>
+                    </div>
+                </div>
+                <div class="inline-flex items-center justify-start h-full w-full">
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="text-sm font-medium">22</p>
+                    </div>
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="text-sm font-medium">23</p>
+                    </div>
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="text-sm font-medium">24</p>
+                    </div>
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="text-sm font-medium">25</p>
+                    </div>
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="text-sm font-medium">26</p>
+                    </div>
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="text-sm font-medium">27</p>
+                    </div>
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="text-sm font-medium">28</p>
+                    </div>
+                </div>
+                <div class="inline-flex items-center justify-start w-full h-full">
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="text-sm font-medium">29</p>
+                    </div>
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="text-sm font-medium">30</p>
+                    </div>
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="text-sm font-medium">31</p>
+                    </div>
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="opacity-50 text-sm font-medium">01</p>
+                    </div>
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="opacity-50 text-sm font-medium ">02</p>
+                    </div>
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="opacity-50 text-sm font-medium">03</p>
+                    </div>
+                    <div
+                        class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+                        <p class="opacity-50 text-sm font-medium ">04</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

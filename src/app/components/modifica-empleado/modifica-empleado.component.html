@@ -1,0 +1,138 @@
+<app-logged-in-user-menu-navbar [rolName]="'Administrador'" [theme]="theme" (themeTogglerEvent)="toggleTheme($event)">
+</app-logged-in-user-menu-navbar>
+<div [ngClass]="{
+        'flex': true, 'justify-center': true, 'bg-zinc-700': theme==='dark',
+        'bg-white': theme==='light', 'mt-28': true, 'pt-4': true, 'gap-3': true,
+        'h-full': true, 'md:mt-12 md:h-screen lg:mt-11 lg:h-screen xl:mt-11 xl:h-screen  
+        2xl:mt-10 2xl:h-screen': true, ' backdrop-container': modalAreOpen
+    }
+">
+
+    <div [ngClass]="{
+            'flex flex-col mx-2 pt-1.5 gap-3 md:mx-24 lg:24 xl:mx-28 2xl:mx-28': true,
+            
+        }"
+    >
+        <div [ngClass]="{
+                'flex flex-col rounded-lg justify-center space-y-11 items-center mx-auto 
+                px-4 py-8 w-11/12 h-full': true, 'text-white': theme==='dark'  
+            }"
+        >
+            <h2 class="text-lg font-bold md:text-xl lg:text-xl xl:text-2xl 2xl:text-3xl">
+                INFORMACIÓN DE EMPLEADO
+            </h2>
+            <div class="p-3.5 grid grid-cols-1 grid-rows-6 gap-8 self-center 
+                md:grid-cols-3 md:grid-rows-2 lg:grid-cols-3 
+                lg:grid-rows-2 xl:grid-cols-3 xl:grid-rows-2 
+                2xl:grid-cols-3 2xl:grid-rows-2">
+                <div class="row-span-3 flex flex-col">
+                    <img [ngSrc]="empleado.url_fotografia" id="empleado-pic" width="auto" height="auto" />
+                    <button type="button" class="rounded-b-md bg-teal-400 text-2-smooky-black py-1.5 hover:bg-2-electric-blue">Cambiar fotografía</button>
+                </div>
+                <input
+                    type="text"
+                    [ngClass]="{
+                        'rounded-xl h-10': true, 'drop-shadow-lg shadow-sm shadow-0-inst-blue': true,
+                        'bg-zinc-200': theme==='light', 'bg-zinc-900': theme==='dark',
+                        'text-center': true, 'focus:scale-x-105': true,
+                        'focus:scale-y-110 focus:transition focus:ease-in-out focus:duration-150': true
+                    }"
+                    [value]="empleado.tipo_documento"
+                />
+                <input
+                    type="text"
+                    [ngClass]="{
+                        'rounded-xl h-10': true, 'drop-shadow-lg shadow-sm shadow-0-inst-blue': true, 'bg-zinc-200': theme==='light',
+                        'bg-zinc-900': theme==='dark', 'text-black': theme==='dark', 'text-center': true, 'focus:scale-x-105': true,
+                        'focus:scale-y-110 focus:transition focus:ease-in-out focus:duration-150': true
+                    }"
+                    [value]="empleado.num_documento"
+                />
+                <input
+                    type="text"
+                    [ngClass]="{
+                        'rounded-xl h-10': true, 'drop-shadow-lg shadow-sm shadow-0-inst-blue': true,
+                        'bg-zinc-200': theme==='light', 'bg-zinc-900': theme==='dark',
+                        'text-center': true, 'focus:scale-x-105': true,
+                        'focus:scale-y-110 focus:transition focus:ease-in-out focus:duration-150': true
+                    }"
+                    [value]="empleado.email"
+                />
+                <input
+                    type="text"
+                    [ngClass]="{
+                        'rounded-xl h-10': true, 'drop-shadow-lg shadow-sm shadow-0-inst-blue': true,
+                        'bg-zinc-200': theme==='light', 'bg-zinc-900': theme==='dark',
+                        'text-center': true, 'focus:scale-x-105': true,
+                        'focus:scale-y-110 focus:transition focus:ease-in-out focus:duration-150': true
+                    }"
+                    [value]="empleado.tel"
+                />
+                <div class="flex flex-col-reverse space-y-1">
+                    <label [ngClass]="['italic', 'text-sm']">fecha de entrada</label>
+                    <input
+                        type="date"
+                        [ngClass]="{
+                            'rounded-xl h-10': true, 'drop-shadow-lg shadow-sm shadow-0-inst-blue': true,
+                            'bg-zinc-200': theme==='light', 'bg-zinc-900': theme==='dark',
+                            'text-center': true, 'focus:scale-x-105': true,
+                            'focus:scale-y-110 focus:transition focus:ease-in-out focus:duration-150': true
+                        }"
+                        [value]="empleado.fecha_entrada"
+                    />
+                </div>
+                <div class="flex flex-col-reverse space-y-1 ">
+                    <label [ngClass]="['italic', 'text-sm']">fecha de retiro</label>
+                    <input
+                        type="date"
+                        [ngClass]="{
+                            'rounded-xl h-10': true, 'drop-shadow-lg shadow-sm shadow-0-inst-blue': true,
+                            'bg-zinc-200': theme==='light', 'bg-zinc-900': theme==='dark',
+                            'text-center': true, 'focus:scale-x-105': true,
+                            'focus:scale-y-110 focus:transition focus:ease-in-out focus:duration-150': true
+                        }"
+                        [value]="empleado.fecha_retiro"
+                    />
+                </div>
+            </div>
+            <div class="flex space-x-3.5 self-center">
+                <button [ngClass]="editBtnClass"
+                    (click)="showModal()"
+                >
+                    GUARDAR CAMBIOS
+                </button>
+            </div>
+
+            <!-- Ventana modal de Confirmación de cambios -->
+            <div role="dialog" aria-modal="true" [ngClass]="modalElementClass" *ngIf="modalAreOpen">
+                <h3>Confirmación</h3>
+                <p>¿Está usted seguro de guardar los cambios?</p>
+                <div class="flex space-x-7 mx-auto py-7">
+                    <button [ngClass]="[
+                            'px-5', 'py-2', 'bg-teal-700', 'text-white',
+                            'hover:bg-teal-600', 'hover:transition',
+                            'hover:transition',
+                            'hover:ease-in', 'hover:duration-150',
+                            'hover:scale-105'
+                        ]"
+                        (click)="hideModal()"
+                    >
+                        NO
+                    </button>
+
+                    <button [ngClass]="[
+                            'px-5', 'py-2',
+                            'bg-red-600', 'text-white',
+                            'hover:bg-red-500', 'hover:transition',
+                            'hover:ease-in', 'hover:duration-150',
+                            'hover:scale-105'
+                        ]"
+                        (click)="hideModal()"
+                    >
+                        SI
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

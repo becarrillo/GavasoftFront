@@ -1,0 +1,108 @@
+<app-logged-in-user-menu-navbar [rolName]="'Asesor'" [theme]="theme" (themeTogglerEvent)="toggleTheme($event)">
+</app-logged-in-user-menu-navbar>
+
+<div [ngClass]="{
+    'flex': true, 'justify-center': true, 'bg-zinc-700': theme==='dark',
+    'bg-white': theme==='light', 'mt-28': true, 'pt-4': true, 'gap-3': true,
+    'h-screen': true, 'md:mt-12': true, 'lg:mt-11': true, 'xl:mt-11': true,
+    '2xl:mt-10': true
+}
+">
+    <div class="flex flex-col rounded-lg justify-center items-center px-3 py-6 h-max-screen">
+        <div [ngClass]="{
+            'flex': true, 'flex-col': true, 'rounded-lg': true, 'bg-neutral-100': theme==='light',
+            'bg-zinc-600': theme==='dark', 'text-center': true, 'space-y-4': true, 'mb-8': true,
+            'px-1.5': true, 'py-3.5': true, 'w-9/12': true, 'md:w-5/6': true,  'lg:w-3/4': true,
+            'xl:w-full': true, '2xl:full': true
+        }">
+            <h2 [ngClass]="[
+                'text-sm', 'text-0-cool-gray', 'font-bold', 'md:text-md',
+                'lg:text-lg', 'xl:text-lg', '2xl:text-lg'
+            ]">
+                Bienvenido(a) sr(a).
+                <span class="italic">Ramón Arteta</span>
+            </h2>
+            <h1 class="text-md font-semibold mx-3.5 mt-1 md:text-lg lg:text-xl xl:text-xl 2xl:text-xl">
+                AGREGAR AGENDAMIENTO</h1>
+        </div>
+        <form class="flex flex-col space-y-6 rounded-lg ring-1 ring-zinc-900 
+          bg-slate-300 justify-self-center px-7 py-10 w-10/12 md:w-5/6 
+          lg:w-3/4 xl:w-11/12 2xl:w-11/12">
+            <fieldset class=" grid grid-cols-2 grid-rows-4 gap-x-3.5 gap-y-8">
+                <div class="col-span-2 flex flex-col space-y-0.5 px-0.5">
+                    <legend class="">Información del agendamiento</legend>
+                    <hr [ngClass]="['bg-zinc-700', 'h-0.5']" />
+                </div>
+                
+                <div class="flex flex-col-reverse space-y-2 px-0 5">
+                    <label [ngClass]="['text-xs', 'italic', 'ml-2']">fecha</label>
+                    <input
+                        type="date"
+                        [ngClass]="{
+                            'h-9 rounded-md outline-2 outline-amber-300 ring-1': true,
+                            'ring-stone-300 pl-2': true
+                        }
+                    "/>
+                </div>
+                
+                <div class="flex flex-col-reverse space-y-2 px-0 5">
+                    <label [ngClass]="['text-xs', 'italic', 'ml-2']">hora</label>
+                    <select
+                        name="time"
+                        id="myTime"
+                        class="
+                            bg-white h-9 rounded-md outline-2 outline-amber-300 ring-1 
+                            my-0 5 focus-ring-2 focus:ring-heliotrope
+                            ring-stone-300 px-2 
+                        "
+                    >
+                        <option>08:00 A.M.</option>
+                        <option disabled>08:20 A.M. <span class="italic">no disponible</span></option>
+                        <option>08:40 A.M.</option>
+                        <option>09:00 A.M.</option>
+                        <option>09:20 A.M.</option>
+                        <option>09:40 A.M.</option>
+                        <option>10:00 A.M.</option>
+                    </select>
+                </div>
+                
+                <div class="col-span-2 flex flex-col-reverse space-y-2 px-0 5">
+                    <label [ngClass]="['text-xs', 'italic', 'ml-2']">nombre del servicio</label>
+                    <select
+                        name="servicio"
+                        id="myServicio"
+                        class="
+                            bg-white h-9 rounded-md outline-2 outline-amber-300 ring-1 
+                            my-0 5 focus-ring-2 focus:ring-heliotrope
+                            ring-stone-300 px-2 
+                        "
+                    >
+                        <option>Masaje reductor en frio</option>
+                        <option>Depilación láser zona bikini</option>
+                        <option>Depilación en cera</option>
+                        <option>Masaje reductor en frio 2</option>
+                        <option>Depilación láser zona bikini 2</option>
+                        <option>Depilación en cera 2</option>
+                        <option>Masaje reductor en frío 3</option>
+                        <option>Depilación láser zona bikini 3</option>
+                        <option>Depilación en cera 3</option>
+                    </select>
+                </div>
+                <button
+                    class="
+                        col-span-2 w-full h-10 rounded-md bg-green-600 text-center 
+                        text-white mx-auto py-1.5 hover:bg-teal-500
+                    "
+                    type="submit">GUARDAR</button>
+            </fieldset>
+        </form>
+        <button [routerLink]="'/menu-administrador'" routerLinkActive="router-link-active" [ngClass]="[
+        'rounded-3xl', 'ring-2', 'ring-slate-200', 'bg-1-heliotrope', 'opacity-90',
+        'font-semibold', 'w-24', 'h-24', 'cursor-pointer', 'z-10', 'fixed', 'right-9',
+        'bottom-16', 'md:right-20', 'lg:right-48', 'xl:right-64', '2xl:right-72',
+        'hover:bg-cyan-500'
+    ]">
+            <h4>REGRESAR AL MENÚ</h4>
+        </button>
+    </div>
+</div>

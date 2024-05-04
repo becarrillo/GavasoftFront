@@ -1,0 +1,75 @@
+<app-logged-in-user-menu-navbar [rolName]="'Administrador'" [theme]="theme" (themeTogglerEvent)="toggleTheme($event)">
+</app-logged-in-user-menu-navbar>
+<div [ngClass]="{
+    'flex': true, 'flex-col': true, 'bg-zinc-700': theme==='dark', 'mt-28': true,
+    'px-2': true, 'pt-12': true, 'h-24': true, 'md:mt-11': true, 'md:px-20': true, 'lg:mt-11': true,
+    'lg:px-60': true, 'xl:mt-11': true, 'xl:px-72': true, '2xl:mt-11': true,'2xl:px-80': true
+}"
+>
+    <h2 [ngClass]="{'self-center': true, 'text-2xl': true, 'text-white': theme==='dark'}">Asignar rol</h2>
+</div>
+<ul role="list" [ngClass]="{
+        'flex': true, 'flex-col': true, 'justify-center': true, 'divide-y': true, 'divide-gray-100': true,
+        'bg-zinc-700': theme==='dark', 'bg-white': theme==='light', 'px-16': true, 'py-80': true,
+        'gap-3': true, 'h-96': true, 'md:px-20': true,
+        'lg:px-60': true, 'xl:px-72': true,
+        '2xl:px-80': true
+    }"
+>
+
+    @if (empleado) {
+        <li class="flex flex-col justify-around space-y-2 py-5 md:flex-row lg:flex-row xl:flex-row 2xl:flex-row">
+            <div class="flex min-w-0 gap-x-4">
+                <img class="h-12 w-12 flex-none rounded-full bg-gray-50"
+                    ngSrc="empleado.url_fotografia"
+                    width="auto" height="auto"
+                >
+                <div class="min-w-0 flex flex-col">
+                    <p [ngClass]="{
+                            'text-sm': true, 'font-semibold': true, 'leading-6': true,
+                            'text-gray-900': theme==='light', 'text-white': theme==='dark'
+                        }"
+                    >
+                        {{empleado.nombre}} {{empleado.apellidos}}
+                    </p>
+                    <p [ngClass]="{'mt-2 p-1 block italic': true, 'text-white': theme==='dark'}">{{empleado.fecha_entrada}}</p>
+                </div>
+            </div>
+            <div class="flex flex-col items-center">
+                <h5 class="text-xs leading-5 text-gray-500 ml-auto">Opciones rol</h5>
+                <select [ngClass]="{
+                        'bg-neutral-300': theme==='light',
+                        'bg-zinc-500': theme==='dark', 'w-40': true,
+                        'h-8': true, 'pl-2': true, 'focus:scale-105': true, 'focus:ring-2': true,
+                        'focus:ring-offset-1': true, 'focus:ring-offset-0-inst-blue': true,
+                        'focus:bg-neutral-200': theme==='light',
+                        'focus:bg-zinc-400': theme==='dark'
+                    }"
+                    name="rol"
+                    (change)="setEmpleadoRol($event)"
+                >
+                    @if (empleado.rol === 'administrador') {
+                        <option value="administrador">administrador</option>
+                        <option value="asesor" id="asesor">asesor</option>
+                    } @else {
+                        <option value="asesor" id="asesor">asesor</option>
+                        <option value="administrador">administrador</option>
+                    }
+                    
+                </select>
+            </div>
+        </li>
+    }
+</ul>
+<div [ngClass]="{
+        'flex': true, 'flex-col': true, 'bg-zinc-700': theme==='dark',
+        'px-2': true, 'pt-16': true, 'h-96': true,'md:px-20': true, 'lg:px-60': true,
+        'xl:px-72': true,'2xl:px-80': true
+    }"
+>
+    <input
+        class="rounded-md bg-cyan-500 text-lg self-center px-4 py-0.5 w-48 h-11 hover:bg-2-electric-blue hover:cursor-pointer" type="button"
+        value="Guardar cambios"
+        (click)="handChanges()"
+    />
+</div>

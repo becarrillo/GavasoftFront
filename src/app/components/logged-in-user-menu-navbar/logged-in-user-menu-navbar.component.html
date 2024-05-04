@@ -1,0 +1,63 @@
+<header [ngClass]="[
+        'bg-1-heliotrope', 'from-0-inst-blue', 'bg-gradient-to-r', 'fixed', 'top-0',
+        'z-10', 'w-full', 'h-28', 'md:h-12', 'lg:h-11', 'xl:h-11', '2xl:h-11'
+    ]"
+>
+    <nav [ngClass]="'py-0'">
+        <ul
+            [ngClass]="{
+                'flex':true, 'flex-col':true, 'space-y-2': true, 'justify-between' : true,
+                'text-white':true, 'z-10': true, 'md:flex-row': true, 'md:space-y-0': true,
+                'md:justify-between': true, 'lg:space-y-0': true, 'lg:justify-around' : true,
+                'xl:flex-row': true, 'xl:space-y-0': true, 'xl:justify-around' : true,
+                '2xl:flex-row': true, '2xl:space-y-0': true, '2xl:justify-between': true
+            }"
+        >
+            <li [ngClass]="[
+                    'flex space-x-12', 'mx-10', 'px-2', 'pb-1', 'md:ml-20', 'lg:ml-14', 'xl:ml28', '2xl:ml-64'
+                ]"
+            >
+                <app-burguer-menu-btn></app-burguer-menu-btn>
+                <span [ngClass]="'mt-3'">{{rolName}}</span>
+            </li>
+            <li [ngClass]="[
+                    'visible', 'ml-10', 'mb-1', 'py-0.5', 'md:visible', 'lg:visible', 'lg:mr-24',
+                    'xl:visible', '2xl:visible', 'md:mr-20', '2xl:mr-72'
+                ]"
+            >
+                <div [ngClass]="['flex', 'space-x-3.5', 'px-2', 'py-1']">
+                    <button
+                        [ngClass]="['rounded-md', 'opacity-85']"
+                        routerLink="/"
+                        routerLinkActive="router-link-active"
+                    >
+                        <img ngSrc="../../../assets/logo.png" width="33" height="33" />
+                    </button>
+                    <button
+                        [ngClass]="{
+                            'flex': true, 'rounded-2xl': true, 'ring-1': true, 'ring-emerald-50': true,
+                            'bg-2-electric-blue': theme==='dark', 'bg-slate-400': theme==='light', 'hover:scale-105': true
+                        }"
+                        (click)="toggleTheme()"
+                    >
+                        <img
+                            width="24"
+                            height="24"
+                            ngSrc="https://img.icons8.com/material-outlined/24/do-not-disturb-2.png"
+                            alt="do-not-disturb-2"
+                        />
+                    </button>
+                    <form ngClass="pt-0.5">
+                        <input
+                            type="text"
+                            formControlName="lookup"
+                            [ngClass]="['rounded-md', 'w-48', 'h-7', 'text-sm', 'text-black']"
+                            (input)="sendNavLookupValue($event)"
+                            placeholder="  Buscar"
+                         />
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</header>

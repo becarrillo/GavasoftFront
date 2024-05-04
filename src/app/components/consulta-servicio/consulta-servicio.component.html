@@ -1,0 +1,47 @@
+<app-logged-in-user-menu-navbar [rolName]="'Administrador'" [theme]="theme" (themeTogglerEvent)="toggleTheme($event)">
+</app-logged-in-user-menu-navbar>
+<div [ngClass]="{
+        'flex': true, 'flex-col': true, 'items-center': true,  'justify-center': true,
+        'space-y-7':true, 'min-h-screen': true, 'bg-zinc-700': theme==='dark',
+        'mt-28 md:mt-11 lg:mt-10 xl:mt-10 2xl:mt-10': servicioIsFound
+    }"
+>
+    <h1
+        [ngClass]="{'text-zinc-500': theme==='dark', 'px-1 py-0 5 text-xl': true, 'md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-4xl': true}">
+        Consultar un servicio</h1>
+    <form (submit)="submitServicio($event)" class="relative mx-auto flex space-x-0.5">
+        @if (searchBtnIsBlur) {
+        <button class="
+                        absolute top-0 right-0 bottom-0 my-auto h-9 w-10 px-3 bg-slate-300 rounded-lg 
+                        md:scale-110 lg:scale-110 xl:scale-110 
+                        2xl:scale-110
+                    " type="button" (click)="searchBtnIsBlur=false">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50">
+                <path
+                    d="M 21 3 C 11.601563 3 4 10.601563 4 20 C 4 29.398438 11.601563 37 21 37 C 24.355469 37 27.460938 36.015625 30.09375 34.34375 L 42.375 46.625 L 46.625 42.375 L 34.5 30.28125 C 36.679688 27.421875 38 23.878906 38 20 C 38 10.601563 30.398438 3 21 3 Z M 21 7 C 28.199219 7 34 12.800781 34 20 C 34 27.199219 28.199219 33 21 33 C 13.800781 33 8 27.199219 8 20 C 8 12.800781 13.800781 7 21 7 Z">
+                </path>
+            </svg>
+        </button>
+        } @else {
+        <input type="search" [ngClass]="{
+                'text-xs': true, 'text-white': theme==='dark', 'shadow-sm shadow-1-heliotrope': theme==='light',
+                'peer relative z-10 hue-rotate-9 w-full rounded-l-lg border bg-transparent': true,
+                'outline-none focus:rounded-r-none focus:w-full': true,
+                'focus:border-taupeGray px-3': true,
+            }" placeholder=" Escriba el nombre del servicio"
+            (change)="setServicioName($event)"
+        />
+        <button class="
+                        top-0 right-0 bottom-0 my-auto h-9 w-10 px-3 bg-slate-300 rounded-lg 
+                        relative rounded-l-none border 2xl:scale-110
+                    " type="submit">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50">
+                <path
+                    d="M 21 3 C 11.601563 3 4 10.601563 4 20 C 4 29.398438 11.601563 37 21 37 C 24.355469 37 27.460938 36.015625 30.09375 34.34375 L 42.375 46.625 L 46.625 42.375 L 34.5 30.28125 C 36.679688 27.421875 38 23.878906 38 20 C 38 10.601563 30.398438 3 21 3 Z M 21 7 C 28.199219 7 34 12.800781 34 20 C 34 27.199219 28.199219 33 21 33 C 13.800781 33 8 27.199219 8 20 C 8 12.800781 13.800781 7 21 7 Z">
+                </path>
+            </svg>
+        </button>
+        }
+        <!-- valor de consulta : testMsg -->
+    </form>
+</div>

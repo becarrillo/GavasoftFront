@@ -1,0 +1,141 @@
+<app-logged-in-user-menu-navbar [rolName]="'Administrador'" [theme]="theme" (themeTogglerEvent)="toggleTheme($event)">
+</app-logged-in-user-menu-navbar>
+<div [ngClass]="{
+        'flex': true, 'justify-center': true, 'bg-zinc-700': theme==='dark',
+        'bg-white': theme==='light', 'mt-28': true, 'pt-4': true, 'gap-3': true,
+        'h-full': true, 'md:mt-12': true, 'lg:mt-11': true, 'xl:mt-11': true,
+        '2xl:mt-10': true
+    }
+">
+    <div class="flex flex-col rounded-lg justify-center items-center px-3 py-6 h-max-screen">
+        <div [ngClass]="{
+                'flex': true, 'flex-col': true, 'rounded-lg': true, 'bg-neutral-100': theme==='light',
+                'bg-zinc-600': theme==='dark', 'text-center': true, 'space-y-4': true, 'mb-8': true,
+                'px-1.5': true, 'py-3.5': true, 'w-9/12': true, 'md:w-5/6': true,  'lg:w-3/4': true,
+                'xl:w-full': true, '2xl:full': true
+            }">
+            <h2 [ngClass]="[
+                    'text-sm', 'text-0-cool-gray', 'font-bold', 'md:text-md',
+                    'lg:text-lg', 'xl:text-lg', '2xl:text-lg'
+                ]">
+                Bienvenido(a) sr(a).
+                <span class="italic">Ramón Arteta</span>
+            </h2>
+            <h1 class="text-md font-semibold mx-3.5 mt-1 md:text-lg lg:text-xl xl:text-xl 2xl:text-xl">
+                FORMULARIO DE REGISTRO - NUEVO EMPLEADO</h1>
+        </div>
+        <form class="flex flex-col space-y-6 rounded-lg ring-1 ring-zinc-900 
+              bg-slate-300 justify-self-center px-7 py-10 w-10/12 md:w-5/6 
+              lg:w-3/4 xl:w-11/12 2xl:w-11/12"
+              [formGroup]="empleadoFormGroup"
+              (submit)="submitEmpleado($event)"
+        >
+            <fieldset class="grid grid-cols-2 grid-rows-3 gap-x-3.5 gap-y-8">
+                <legend class="mb-2 pl-1">Información básica</legend>
+                <input type="text" [ngClass]="{
+                        'h-8 rounded-md outline-2 outline-amber-300 ring-1 ring-stone-300 pl-2 focus:scale-110': true
+                    }"
+                    formControlName="apellidosControl"
+                    id="apellidosControl"
+                    placeholder="apellidos"
+                />
+                <input type="text" [ngClass]="{
+                        'h-8 rounded-md outline-2 outline-amber-300 ring-1 ring-stone-300 pl-2 focus:scale-110': true
+                        }
+                    "
+                    formControlName="nombreControl"
+                    id="nombreControl"
+                    placeholder="nombre"
+                />
+                <input type="email" [ngClass]="{
+                        'h-8 rounded-md outline-2 outline-amber-300 ring-1 ring-stone-300 pl-2 focus:scale-110': true
+                        }
+                    "
+                    formControlName="emailControl"
+                    id="emailControl"
+                    placeholder="correo electrónico"
+                />
+                <input type="text" [ngClass]="{
+                        'h-8 rounded-md outline-2 outline-amber-300 ring-1 ring-stone-300 pl-2 focus:scale-110': true
+                        }
+                    "
+                    formControlName="telControl"
+                    id="telControl"
+                    placeholder="teléfono"
+                />
+                <input type="text" [ngClass]="{
+                        'h-8 rounded-md outline-2 outline-amber-300 ring-1 ring-stone-300 pl-2 focus:scale-110': true
+                        }
+                    "
+                    formControlName="tipoDocumentoControl"
+                    id="tipoDocumentoControl"
+                    placeholder="tipo de documento de id"
+                />
+                <input type="text" [ngClass]="{
+                        'h-8 rounded-md outline-2 outline-amber-300 ring-1 ring-stone-300 pl-2 focus:scale-110': true
+                        }
+                    "
+                    formControlName="numDocumentoControl"
+                    id="numDocumentoControl"
+                    placeholder="número de documento de id"
+                />
+            </fieldset>
+            <hr class="h-0.5 bg-zinc-500">
+            <fieldset class="grid grid-rows-1 gap-y-6">
+                <legend class="mb-2">Fotografía del empleado</legend>
+                <div class="flex flex-col-reverse">
+                    <label [ngClass]="['ml-0.5', 'italic']" for="urlFotografiaControl">
+                    	Fotografía en formato .jpg, .jpeg o .png
+                    </label>
+                    <input
+                        type="text"
+                        accept="image/.jpg, image/.jpeg, image/.png"
+                        class="h-8 outline-2 outline-amber-300 pl-2 ring-1 ring-stone-300"
+                        id="urlFotografiaControl"
+                        formControlName="urlFotografiaControl"
+                    />
+                </div>
+            </fieldset>
+            <fieldset class="grid grid-rows-1 gap-y-6">
+                <legend class="mb-2">Fechas importantes dentro de la organización</legend>
+                <div class="flex flex-col-reverse">
+                    <label [ngClass]="['ml-0.5', 'italic']" for="fechaEntradaControl">
+                    	<small>Fecha de entrada/ingreso</small>
+                    </label>
+                    <input
+                    	type="date"
+                    	class="h-8 outline-2 outline-amber-300 pl-2 ring-1 ring-stone-300"
+                    	id="fechaEntradaControl"
+                    	formControlName="fechaEntradaControl"
+                    />
+                </div>
+            </fieldset>
+            <hr class="h-0.5 bg-zinc-500">
+            <fieldset class="flex gap-x-3.5">
+                <label class="mb-2" for="passwordControl">Contraseña</label>
+                <input type="password" [ngClass]="{
+                        'h-8 rounded-md outline-2 outline-amber-300 ring-1 ring-stone-300 pl-2 focus:scale-110': true
+                        }
+                    "
+                    formControlName="passwordControl"
+                    id="passwordControl"
+                    placeholder="***********"
+                />
+            </fieldset>
+            <button class="w-full h-10 rounded-md bg-green-600 text-center text-white py-1.5 hover:bg-teal-500"
+                type="submit"
+                id="submit"
+            >
+            	ENVIAR
+            </button>
+        </form>
+        <button [routerLink]="'/menu-administrador'" routerLinkActive="router-link-active" [ngClass]="[
+            'rounded-3xl', 'ring-2', 'ring-slate-200', 'bg-1-heliotrope', 'opacity-90',
+            'font-semibold', 'w-24', 'h-24', 'cursor-pointer', 'z-10', 'fixed', 'right-9',
+            'bottom-16', 'md:right-20', 'lg:right-48', 'xl:right-64', '2xl:right-72',
+            'hover:bg-cyan-500'
+        ]">
+            <h4>REGRESAR AL MENÚ</h4>
+        </button>
+    </div>
+</div>
