@@ -32,7 +32,7 @@ export default {
                         "url": "https://img.icons8.com/forma-thin/24/list.png",
                         "width": 24
                     },
-                    "redirection": "https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://hondasupermotos.com/motos/&ved=2ahUKEwjRiqOL2NiFAxWhSTABHcpCBPwQFnoECDYQAQ&usg=AOvVaw1nABHG2bepdrRzBFPjBkJW",
+                    "redirection": "/menu-administrador/admin-empleados/listar",
                     "title": "Listar empleados"
                 }
             ],

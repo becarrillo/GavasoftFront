@@ -3,24 +3,25 @@
 <div [ngClass]="{
     'flex': true, 'flex-col': true, 'bg-zinc-700': theme==='dark', 'mt-28': true,
     'px-2': true, 'pt-12': true, 'h-24': true, 'md:mt-11': true, 'md:px-20': true, 'lg:mt-11': true,
-    'lg:px-60': true, 'xl:mt-11': true, 'xl:px-72': true, '2xl:mt-11': true,'2xl:px-80': true
+    'lg:px-60': true, 'xl:mt-11': true, 'xl:px-72': true, '2xl:mt-11': true,'2xl:px-80': true,
+    '2xl:pt-16': true
 }"
 >
     <h2 [ngClass]="{'self-center': true, 'text-2xl': true, 'text-white': theme==='dark'}">Asignar rol</h2>
 </div>
-<ul role="list" [ngClass]="{
+<div [ngClass]="{
         'flex': true, 'flex-col': true, 'justify-center': true, 'divide-y': true, 'divide-gray-100': true,
-        'bg-zinc-700': theme==='dark', 'bg-white': theme==='light', 'px-16': true, 'py-80': true,
-        'gap-3': true, 'h-96': true, 'md:px-20': true,
+        'bg-zinc-700': theme==='dark', 'bg-white': theme==='light', 'px-16': true, 'py-12': true,
+        'gap-3': true, 'h-screen': true, 'md:px-20': true,
         'lg:px-60': true, 'xl:px-72': true,
         '2xl:px-80': true
     }"
 >
 
     @if (empleado) {
-        <li class="flex flex-col justify-around space-y-2 py-5 md:flex-row lg:flex-row xl:flex-row 2xl:flex-row">
+        <div class="flex flex-col justify-around space-y-2 py-3 md:flex-row lg:flex-row xl:flex-row 2xl:flex-row">
             <div class="flex min-w-0 gap-x-4">
-                <img class="h-12 w-12 flex-none rounded-full bg-gray-50"
+                <img class="h-20 w-20 flex-none rounded-full bg-gray-50"
                     ngSrc="empleado.url_fotografia"
                     width="auto" height="auto"
                 >
@@ -51,25 +52,43 @@
                     @if (empleado.rol === 'administrador') {
                         <option value="administrador">administrador</option>
                         <option value="asesor" id="asesor">asesor</option>
+                        <option value="NULL">NULL</option>
+                    } @else if(empleado.rol === 'asesor'){
+                        <option value="asesor" id="asesor">asesor</option>
+                        <option value="administrador">administrador</option>
+                        <option value="NULL">NULL</option>
                     } @else {
+                        <option value="NULL">NULL</option>
                         <option value="asesor" id="asesor">asesor</option>
                         <option value="administrador">administrador</option>
                     }
-                    
                 </select>
             </div>
-        </li>
+        </div>
     }
-</ul>
-<div [ngClass]="{
+    <div [ngClass]="{
         'flex': true, 'flex-col': true, 'bg-zinc-700': theme==='dark',
-        'px-2': true, 'pt-16': true, 'h-96': true,'md:px-20': true, 'lg:px-60': true,
+        'px-2': true, 'py-7': true, 'md:px-20': true, 'lg:px-60': true,
         'xl:px-72': true,'2xl:px-80': true
     }"
 >
-    <input
-        class="rounded-md bg-cyan-500 text-lg self-center px-4 py-0.5 w-48 h-11 hover:bg-2-electric-blue hover:cursor-pointer" type="button"
-        value="Guardar cambios"
-        (click)="handChanges()"
-    />
+        <input
+            type="button"
+            [ngClass]="{
+                'rounded-md': true, 'bg-cyan-500': rolOptionHasChanged && rol!==empleado.rol,
+                'text-lg self-center px-4 py-0.5 w-48 h-11': true,
+                'hover:bg-2-electric-blue hover:cursor-pointer' : rolOptionHasChanged && rol!==empleado.rol,
+                'bg-neutral-500 text-zinc-300 cursor-default': !rolOptionHasChanged || (
+                    rolOptionHasChanged && rol===empleado.rol
+                )
+            }"
+            [disabled]="
+                !rolOptionHasChanged || (
+                    rolOptionHasChanged && rol===empleado.rol
+                )
+            "
+            (click)="handChanges()"
+            value="Guardar cambios"
+        />
+    </div>
 </div>

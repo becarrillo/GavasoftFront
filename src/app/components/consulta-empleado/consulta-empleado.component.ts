@@ -25,6 +25,7 @@ export class ConsultaEmpleadoComponent implements OnInit {
   empleadosArray: Empleado[] = [];
   empleadoNumDocumento!: string;
   consultaValue! : string;
+  img : string = '././././assets/ejemplo-perfil.jpeg';
   radioCheckedReference! : string;
 
   constructor(private readonly empleadoService: EmpleadoService) { }

@@ -18,10 +18,10 @@ import { UsuarioRol } from '../../models/UsuarioRol';
   styleUrl: './asigna-rol.component.css'
 })
 export class AsignaRolComponent {
-  rol! : string;
+  rol! : string | null;
+  rolOptionHasChanged! : boolean;
   usuarioRol! : UsuarioRol;
   empleado! : Empleado;
-  rows : number = 0;
   theme?: string;
 
   constructor(private empleadoService : EmpleadoService) {}
@@ -35,39 +35,36 @@ export class AsignaRolComponent {
     }
     this.theme = storagedTheme as string;
 
+    this.rolOptionHasChanged = false;
+
     const empleadoNumDocumentoPath = location.pathname.split('/').at(-2);
-    if (empleadoNumDocumentoPath) this.empleadoService.getEmpleado(empleadoNumDocumentoPath)
+    if (empleadoNumDocumentoPath) {
+      this.empleadoService.getEmpleado(empleadoNumDocumentoPath)
       .subscribe(data => {
         data['fecha_entrada'] = new Date(data.fecha_entrada).toLocaleDateString();
         this.empleado = data;
-      }
-    );
+      });
+    }
   }
 
   setEmpleadoRol(event : Event) : void {
     this.rol = (event.target as HTMLInputElement).value;
+    this.rolOptionHasChanged = true;
   }
 
   handChanges() : void {
-    this.empleadoService.getUsuarioId(this.empleado['num_documento'])
-      .subscribe(data => {
-        this.usuarioRol = {
-          usuarioId: data,
-          rol: this.rol
-        }
-      });
+    this.usuarioRol = {
+      usuarioId: this.empleado['usuario_id'],
+      rol: this.rol
+    }
 
     this.empleadoService.assignRol(
       this.empleado['num_documento'],
       this.usuarioRol
-    ).subscribe(data => this.rows = data);
-
-    if (this.rows > 0) {
-      window.alert(
-        this.rows.toString().concat(" cambio de rol de usuario-empleado realizado con éxito")
-      );
-    }
-    
+    ).subscribe(data => {
+      window.alert(data.toString().concat(" rol del empleado actualizado exitosamente"));
+      window.location.reload();
+    });
   }
 
   toggleTheme(boolTheme: boolean): void {
@@ -81,9 +78,4 @@ export class AsignaRolComponent {
     console.log(storagedTheme);
     this.theme = (storagedTheme as string);
   }
-}
-
-type EmpleadoRolObj = {
-  empleado: string,
-  rol: string
 }

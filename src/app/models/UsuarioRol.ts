@@ -1,4 +1,4 @@
 export interface UsuarioRol {
-    usuarioId : number,
-    rol : string
+    usuarioId : number | null,
+    rol : string | null
 }

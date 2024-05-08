@@ -17,8 +17,7 @@ export class EmpleadoService {
     headers.append("Content-Type", "application/json");
     
     return this.httpClient.post<number>(
-      "http://localhost:8081/v1/usuarios/empleados/menu-administrador/admin-empleados/consultar/"+numDocumento+
-      "/asignar-rol",
+      "http://localhost:8081/v1/usuarios/empleados/menu-administrador/admin-empleados/consultar/"+numDocumento.concat("/asignar-rol"),
       usuarioRol,
       {
         headers
@@ -44,7 +43,19 @@ export class EmpleadoService {
 
     return this.httpClient.get<number>(
       "http://localhost:8081/v1/usuarios/empleados/menu-administrador/admin-empleados/consultar/"+
-      numDocumento+"/obtener-id-de-usuario",
+      numDocumento.concat("/obtener-id-de-usuario"),
+      {
+        headers
+      }
+    );
+  }
+
+  listAll() : Observable<Empleado[]> {
+    const headers = new HttpHeaders();
+    headers.append("Vary", "Origin");
+
+    return this.httpClient.get<Empleado[]>(
+      "http://localhost:8081/v1/usuarios/empleados/menu-administrador/admin-empleados/listar",
       {
         headers
       }
@@ -96,7 +107,7 @@ export class EmpleadoService {
     headers.append("Vary", "Origin");
 
     return this.httpClient.put<number>(
-      "http:localhost:8081/v1/usuarios/empleados/menu-administrador/admin-empleados/consultar/"+numDocumento+
+      "http://localhost:8081/v1/usuarios/empleados/menu-administrador/admin-empleados/consultar/"+numDocumento+
       "/modificar",
       empleado,
       {
@@ -110,7 +121,7 @@ export class EmpleadoService {
     headers.append("Vary", "Origin");
 
     return this.httpClient.delete<number>(
-      "http:localhost:8081/v1/usuarios/empleados/menu-administrador/admin-empleados/consultar/"+numDocumento+
+      "http://localhost:8081/v1/usuarios/empleados/menu-administrador/admin-empleados/consultar/"+numDocumento+
       "/eliminar",
       {
         headers

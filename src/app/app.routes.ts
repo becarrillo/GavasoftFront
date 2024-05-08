@@ -41,9 +41,11 @@ export const routes: Routes = [
         loadComponent: () => import('./components/asigna-rol/asigna-rol.component')
             .then(c => c.AsignaRolComponent)
     },
-    /*{
+    {
         path: 'menu-administrador/admin-empleados/listar',
-        loadComponent: () => import('./components/')*/
+        loadComponent: () => import('./components/lista-empleados/lista-empleados.component')
+            .then(c => c.ListaEmpleadosComponent)
+    },
     {
         path: 'menu-administrador/admin-empleados/consultar/:empleadoNumDocumento/modificar',
             loadComponent: () => import('./components/modifica-empleado/modifica-empleado.component')

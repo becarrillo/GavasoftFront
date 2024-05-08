@@ -5,103 +5,195 @@
         'bg-white': theme==='light', 'mt-28': true, 'pt-4': true, 'gap-3': true,
         'h-full': true, 'md:mt-12 md:h-screen lg:mt-11 lg:h-screen xl:mt-11 xl:h-screen  
         2xl:mt-10 2xl:h-screen': true, ' backdrop-container': modalAreOpen
-    }
-">
-
+    }"
+>
     <div [ngClass]="{
             'flex flex-col mx-2 pt-1.5 gap-3 md:mx-24 lg:24 xl:mx-28 2xl:mx-28': true,
             
         }"
     >
         <div [ngClass]="{
-                'flex flex-col rounded-lg justify-center space-y-11 items-center mx-auto 
-                px-4 py-8 w-11/12 h-full': true, 'text-white': theme==='dark'  
+                'flex flex-col rounded-lg justify-center space-y-11 items-center mx-auto': theme==='dark',
+                'px-4 py-8 w-11/12 h-full' : true, 'text-white' : theme==='dark'  
             }"
         >
             <h2 class="text-lg font-bold md:text-xl lg:text-xl xl:text-2xl 2xl:text-3xl">
-                INFORMACIÓN DE EMPLEADO
+                ACTUALIZACIÓN INFORMACIÓN DE EMPLEADO
             </h2>
-            <div class="p-3.5 grid grid-cols-1 grid-rows-6 gap-8 self-center 
-                md:grid-cols-3 md:grid-rows-2 lg:grid-cols-3 
-                lg:grid-rows-2 xl:grid-cols-3 xl:grid-rows-2 
-                2xl:grid-cols-3 2xl:grid-rows-2">
-                <div class="row-span-3 flex flex-col">
-                    <img [ngSrc]="empleado.url_fotografia" id="empleado-pic" width="auto" height="auto" />
-                    <button type="button" class="rounded-b-md bg-teal-400 text-2-smooky-black py-1.5 hover:bg-2-electric-blue">Cambiar fotografía</button>
+            <form class="
+                    p-3.5 grid grid-cols-1 grid-rows-14 gap-6 self-center 
+                    md:grid-cols-3 md:grid-rows-5 lg:grid-cols-3 
+                    lg:grid-rows-6 xl:grid-cols-3 xl:grid-rows-6 
+                    2xl:grid-cols-3 2xl:grid-rows-6
+                "
+                [formGroup]="empleadoGroup"
+                (ngSubmit)="showModal($event)"
+                *ngIf="empleadoGroup"
+            >
+                <div class="flex flex-col row-span-4">
+                    <img [src]="empleadoGroup.value.fotografiaControl" id="empleado-pic" width="210" height="300" />
+                    <input
+                        type="file"
+                        accept="image/.png, image/.jpg, image/.jpeg"
+                        [ngClass]="{
+                            'bg-teal-400 text-2-smooky-black hover:bg-2-electric-blue': !modalAreOpen,
+                            'bg-neutral-400 text-white': modalAreOpen, 'rounded-b-md py-1.5' : true,
+                            'cursor-pointer': true
+                        }"
+                        id="profile"
+                        formControlName="fotografiaControl"
+                    />
+                    <label for="profile" [ngClass]="'text-sm'">Cambiar fotografía</label>
                 </div>
-                <input
-                    type="text"
-                    [ngClass]="{
-                        'rounded-xl h-10': true, 'drop-shadow-lg shadow-sm shadow-0-inst-blue': true,
-                        'bg-zinc-200': theme==='light', 'bg-zinc-900': theme==='dark',
-                        'text-center': true, 'focus:scale-x-105': true,
-                        'focus:scale-y-110 focus:transition focus:ease-in-out focus:duration-150': true
-                    }"
-                    [value]="empleado.tipo_documento"
-                />
-                <input
-                    type="text"
-                    [ngClass]="{
-                        'rounded-xl h-10': true, 'drop-shadow-lg shadow-sm shadow-0-inst-blue': true, 'bg-zinc-200': theme==='light',
-                        'bg-zinc-900': theme==='dark', 'text-black': theme==='dark', 'text-center': true, 'focus:scale-x-105': true,
-                        'focus:scale-y-110 focus:transition focus:ease-in-out focus:duration-150': true
-                    }"
-                    [value]="empleado.num_documento"
-                />
-                <input
-                    type="text"
-                    [ngClass]="{
-                        'rounded-xl h-10': true, 'drop-shadow-lg shadow-sm shadow-0-inst-blue': true,
-                        'bg-zinc-200': theme==='light', 'bg-zinc-900': theme==='dark',
-                        'text-center': true, 'focus:scale-x-105': true,
-                        'focus:scale-y-110 focus:transition focus:ease-in-out focus:duration-150': true
-                    }"
-                    [value]="empleado.email"
-                />
-                <input
-                    type="text"
-                    [ngClass]="{
-                        'rounded-xl h-10': true, 'drop-shadow-lg shadow-sm shadow-0-inst-blue': true,
-                        'bg-zinc-200': theme==='light', 'bg-zinc-900': theme==='dark',
-                        'text-center': true, 'focus:scale-x-105': true,
-                        'focus:scale-y-110 focus:transition focus:ease-in-out focus:duration-150': true
-                    }"
-                    [value]="empleado.tel"
-                />
-                <div class="flex flex-col-reverse space-y-1">
-                    <label [ngClass]="['italic', 'text-sm']">fecha de entrada</label>
+                <div class="flex flex-col-reverse space-y-1.5">
+                    <label for="apellidosControl" class="italic text-sm">apellidos</label>
+                    <input
+                        type="text"
+                        [ngClass]="{
+                            'rounded-xl h-10': true, 'drop-shadow-lg shadow-sm shadow-0-inst-blue': true,
+                            'bg-zinc-200': theme==='light', 'bg-zinc-600': !modalAreOpen && theme==='dark',
+                            'text-center': true, 'focus:scale-x-105': true,
+                            'focus:scale-y-110 focus:transition focus:ease-in-out focus:duration-150': true,
+                            'bg-neutral-400 text-white': modalAreOpen, 'rounded-b-md py-1.5' : true,
+                            'cursor-default': modalAreOpen
+                        }"
+                        id="apellidosControl"
+                        formControlName="apellidosControl"
+                    />
+                </div>
+                <div class="flex flex-col-reverse space-y-1.5">
+                    <label for="nombreControl" class="italic text-sm">nombre</label>
+                    <input
+                        type="text"
+                        [ngClass]="{
+                            'rounded-xl h-10': true, 'drop-shadow-lg shadow-sm shadow-0-inst-blue': true,
+                            'bg-zinc-200': theme==='light', 'bg-zinc-600': !modalAreOpen && theme==='dark',
+                            'text-center': true, 'focus:scale-x-105': true,
+                            'focus:scale-y-110 focus:transition focus:ease-in-out focus:duration-150': true,
+                            'bg-neutral-400 text-white': modalAreOpen, 'rounded-b-md py-1.5' : true,
+                            'cursor-default': modalAreOpen
+                        }"
+                        id="nombreControl"
+                        formControlName="nombreControl"
+                    />
+                </div>
+                <div class="flex flex-col-reverse space-y-1.5">
+                    <label for="tipoDocumentoControl" class="italic text-sm">tipo de documento de ID</label>
+                    <input
+                        type="text"
+                        [ngClass]="{
+                            'rounded-xl h-10': true, 'drop-shadow-lg shadow-sm shadow-0-inst-blue': true,
+                            'bg-zinc-200': theme==='light', 'bg-zinc-600': !modalAreOpen && theme==='dark',
+                            'text-center': true, 'focus:scale-x-105': true,
+                            'focus:scale-y-110 focus:transition focus:ease-in-out focus:duration-150': true
+                        }"
+                        id="tipoDocumentoControl"
+                        formControlName="tipoDocumentoControl"
+                    />
+                </div>
+                <div class="flex flex-col-reverse space-y-1.5">
+                    <label class="italic-text-sm" for="numDocumentoControl">número de documento de ID</label>
+                    <input
+                        type="text"
+                        [ngClass]="{
+                            'rounded-xl h-10': true, 'drop-shadow-lg shadow-sm shadow-0-inst-blue': true,
+                            'bg-zinc-200': theme==='light', 'bg-zinc-600': !modalAreOpen && theme==='dark',
+                            'text-center': true, 'focus:scale-x-105': true,
+                            'focus:scale-y-110 focus:transition focus:ease-in-out focus:duration-150': true
+                        }"
+                        id="numDocumentoControl"
+                        formControlName="numDocumentoControl"
+                    />
+                </div>
+                <div class="flex flex-col-reverse space-y-1.5">
+                    <label for="emailControl" class="italic text-sm">correo electrónico</label>
+                    <input
+                        type="text"
+                        [ngClass]="{
+                            'rounded-xl h-10': true, 'drop-shadow-lg shadow-sm shadow-0-inst-blue': true,
+                            'bg-zinc-200': theme==='light', 'bg-zinc-600': !modalAreOpen && theme==='dark',
+                            'text-center': true, 'focus:scale-x-105': true,
+                            'focus:scale-y-110 focus:transition focus:ease-in-out focus:duration-150': true
+                        }"
+                        id="emailControl"
+                        formControlName="emailControl"
+                    />
+                </div>
+                <div class="flex flex-col-reverse space-y-1.5">
+                    <label for="passwordControl" class="italic text-sm">contraseña</label>
+                    <input
+                        type="text"
+                        [ngClass]="{
+                            'rounded-xl h-10': true, 'drop-shadow-lg shadow-sm shadow-0-inst-blue': true,
+                            'bg-zinc-200': theme==='light', 'bg-zinc-600': !modalAreOpen && theme==='dark',
+                            'text-center': true, 'focus:scale-x-105': true,
+                            'focus:scale-y-110 focus:transition focus:ease-in-out focus:duration-150': true
+                        }"
+                        id="passwordControl"
+                        formControlName="telControl"
+                    />
+                </div>
+                <div class="flex flex-col-reverse space-y-1.5">
+                    <label [ngClass]="['italic', 'text-sm']" for="fechaEntradaControl">fecha de entrada</label>
                     <input
                         type="date"
                         [ngClass]="{
                             'rounded-xl h-10': true, 'drop-shadow-lg shadow-sm shadow-0-inst-blue': true,
-                            'bg-zinc-200': theme==='light', 'bg-zinc-900': theme==='dark',
+                            'bg-zinc-200': theme==='light', 'bg-zinc-600': !modalAreOpen && theme==='dark',
                             'text-center': true, 'focus:scale-x-105': true,
                             'focus:scale-y-110 focus:transition focus:ease-in-out focus:duration-150': true
                         }"
-                        [value]="empleado.fecha_entrada"
+                        id="fechaEntradaControl"
+                        formControlName="fechaEntradaControl"
                     />
                 </div>
-                <div class="flex flex-col-reverse space-y-1 ">
-                    <label [ngClass]="['italic', 'text-sm']">fecha de retiro</label>
+                <div class="flex flex-col-reverse space-y-1.5">
+                    <label [ngClass]="['italic', 'text-sm']" for="fechaRetiroControl">fecha de retiro</label>
                     <input
                         type="date"
                         [ngClass]="{
                             'rounded-xl h-10': true, 'drop-shadow-lg shadow-sm shadow-0-inst-blue': true,
-                            'bg-zinc-200': theme==='light', 'bg-zinc-900': theme==='dark',
+                            'bg-zinc-200': theme==='light', 'bg-zinc-600': !modalAreOpen && theme==='dark',
                             'text-center': true, 'focus:scale-x-105': true,
                             'focus:scale-y-110 focus:transition focus:ease-in-out focus:duration-150': true
                         }"
-                        [value]="empleado.fecha_retiro"
+                        id="fechaRetiroControl"
+                        formControlName="fechaRetiroControl"
                     />
                 </div>
-            </div>
-            <div class="flex space-x-3.5 self-center">
-                <button [ngClass]="editBtnClass"
-                    (click)="showModal()"
+                <div class="
+                        flex flex-col-reverse space-y-1.5 md:col-start-2 lg:col-start-2 xl:col-start-2 
+                        2xl:col-start-2 md:col-span-2 lg:col-span-2 xl:col-span-2 2xl:col-span-2
+                    "
+                >
+                    <label [ngClass]="['italic', 'text-sm', 'self-end', 'mr-0.5']" for="rolControl">rol</label>
+                    <select
+                        [ngClass]="{
+                            'rounded-xl h-10': true, 'drop-shadow-lg shadow-sm shadow-0-inst-blue my-1.5': true,
+                            'bg-zinc-200': theme==='light', 'bg-zinc-600': !modalAreOpen && theme==='dark',
+                            'text-center': true, 'focus:scale-x-105 focus:scale-y-110': true,
+                            'focus:transition focus:ease-in-out focus:duration-150': true
+                        }"
+                        id="rolControl"
+                        name="rolControl"
+                        formControlName="rolControl"
+                    >
+                        <option>NULL</option>
+                        <option>asesor</option>
+                        <option>administrador</option>
+                    </select>
+                </div>
+                
+                <button
+                    [ngClass]="[
+                        editBtnClass,'py-3.5','md:col-span-3 lg:col-span-3 xl:col-span-3 2xl:col-span-3'
+                    ]"
+                    name="Submit-group"
                 >
                     GUARDAR CAMBIOS
                 </button>
-            </div>
+            </form>
+            
 
             <!-- Ventana modal de Confirmación de cambios -->
             <div role="dialog" aria-modal="true" [ngClass]="modalElementClass" *ngIf="modalAreOpen">
@@ -127,7 +219,7 @@
                             'hover:ease-in', 'hover:duration-150',
                             'hover:scale-105'
                         ]"
-                        (click)="hideModal()"
+                        (click)="updateEmpleado()"
                     >
                         SI
                     </button>

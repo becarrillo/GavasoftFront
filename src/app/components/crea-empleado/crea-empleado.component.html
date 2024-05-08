@@ -79,23 +79,43 @@
                     id="numDocumentoControl"
                     placeholder="número de documento de id"
                 />
+                <div class="col-span-2 flex flex-col p-1 5">
+                    <h4 [ngClass]="['flex', 'ml-0.5', 'italic']" for="rolControl">
+                        Rol del empleado
+                    </h4>
+                    <div class="grid grid-cols-2 gap-x-1.5 px-2 py-3.5">
+                        <div class="flex px-3 py-1 space-x-3">
+                            <input type="radio" name="rol" id="asNull" (mousedown)="setRol($event)" checked />
+                            <label for="asNull">NULL</label>
+                        </div>
+                        <div class="flex px-3 py-1 space-x-3">
+                            <input type="radio" name="rol" id="asesor" (mousedown)="setRol($event)" value="asesor"/>
+                            <label for="asesor">asesor</label>
+                        </div>
+                        <div class="flex px-3 py-1 space-x-3">
+                            <input type="radio" name="rol" id="administrador" (mousedown)="setRol($event)" value="administrador"/>
+                            <label for="administrador">administrador</label>
+                        </div>
+                    </div>
+                </div>
             </fieldset>
             <hr class="h-0.5 bg-zinc-500">
-            <fieldset class="grid grid-rows-1 gap-y-6">
-                <legend class="mb-2">Fotografía del empleado</legend>
-                <div class="flex flex-col-reverse">
-                    <label [ngClass]="['ml-0.5', 'italic']" for="urlFotografiaControl">
+            <fieldset class="inline-block">
+                <div class="flex flex-col">
+                    <label [ngClass]="['ml-0.5', 'italic']" for="fotografiaInput">
                     	Fotografía en formato .jpg, .jpeg o .png
                     </label>
                     <input
-                        type="text"
+                        type="file"
                         accept="image/.jpg, image/.jpeg, image/.png"
                         class="h-8 outline-2 outline-amber-300 pl-2 ring-1 ring-stone-300"
-                        id="urlFotografiaControl"
-                        formControlName="urlFotografiaControl"
+                        id="fotografiaInput"
+                        name="fotografia-input"
+                        (change)="getFotografiaInputTarget($event)"
                     />
                 </div>
             </fieldset>
+            <hr class="h-0.5 bg-zinc-500">
             <fieldset class="grid grid-rows-1 gap-y-6">
                 <legend class="mb-2">Fechas importantes dentro de la organización</legend>
                 <div class="flex flex-col-reverse">
