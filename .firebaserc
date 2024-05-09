@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "adso-sena-astin-gavasoft": {
+      "hosting": {
+        "gavasoft-front": [
+          "gavasoft"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "adso-sena-astin-gavasoft"
+  }
+}

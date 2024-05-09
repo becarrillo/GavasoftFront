@@ -94,6 +94,23 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "gavasoft-front:build:production",
+              "serveTarget": "gavasoft-front:serve:production"
+            },
+            "development": {
+              "buildTarget": "gavasoft-front:build:development",
+              "serveTarget": "gavasoft-front:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

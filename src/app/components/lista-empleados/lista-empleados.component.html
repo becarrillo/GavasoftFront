@@ -19,7 +19,7 @@
     @for (empleado of empleadosArray; track empleado) {
         <li class="flex flex-col justify-between space-y-2 mx-4 pt-5 pb-3 md:flex-row lg:flex-row xl:flex-row 2xl:flex-row">
             <div class="flex min-w-0 gap-x-4">
-                <img class="h-20 w-20 flex-none rounded-full bg-gray-50" ngSrc="empleado.url_fotografia" width="auto"
+                <img class="h-24 w-20 flex-none rounded-full bg-gray-50" [src]="empleado.url_fotografia" width="auto"
                     height="auto">
                 <div class="min-w-0 flex flex-col">
                     <p [ngClass]="{

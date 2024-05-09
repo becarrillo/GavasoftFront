@@ -42,7 +42,7 @@ export class CreaEmpleadoComponent implements OnInit {
     numDocumentoControl: new FormControl<string>('', [Validators.required, Validators.minLength(4), Validators.maxLength(15)]) as FormControl<string>,
     fechaEntradaControl: new FormControl<string>(new Date().toJSON(), Validators.required) as FormControl<string>
   });
-  empleadoFotografiaUrl : string = '';
+  fileItem! : File;
 
   constructor(
     private empleadoService : EmpleadoService,
@@ -59,38 +59,29 @@ export class CreaEmpleadoComponent implements OnInit {
     this.theme = storagedTheme as string;
   }
 
-  async getDownloadFotografiaUrl() : Promise<void> {
-    const url = await this.firebaseService.getDownloadEmpleadoImgUrl();
-    this.empleadoFotografiaUrl = url;
-  }
-
-  async getFotografiaInputTarget(ev : Event) : Promise<void> {
-    const files = (ev.target as HTMLInputElement).files;
-    let file : File;
-
-    if (files) {
-      if (files.item(0)) {
-        file = files.item(0) as File;
-        file;
-        if (await this.firebaseService.uploadEmpleadoImgAsBytes(file)) {
-          this.getDownloadFotografiaUrl();
-          this.empleadoFotografiaUrl;
-        }
-      }
+  setFotografiaInputTarget(ev : Event) : void {
+    const fileItem = (ev.target as HTMLInputElement).files?.item(0);
+  
+    if (fileItem) {
+      this.fileItem = fileItem;
     }
-    
   }
 
   setRol(ev : MouseEvent) : void {
     this.clickedRol = (ev.currentTarget as HTMLElement).getAttribute('value');
   }
 
-  submitEmpleado(ev : SubmitEvent) : void {
+  async submitEmpleado(ev : SubmitEvent) : Promise<void> {
     ev.preventDefault();
-    if (this.empleadoFormGroup.invalid) window.alert("Verifique los datos, uno de ellos o varios son inválidos");
-    const empleadoFormGroupValue = this.empleadoFormGroup.value;
+    if (this.empleadoFormGroup.invalid) {
+      window.alert("Verifique los datos, uno de ellos o varios son inválidos")
+    }
+    const arrayBuffer = await this.fileItem.arrayBuffer();
 
-    //(empleadoFormGroupValue.fotografiaControl as string)
+    // IMGURL : La url de fotografía subida del empleado, de vuelta del storage de Firebase
+    const IMGURL = await this.firebaseService
+      .uploadEmpleadoImgAsBytes(this.fileItem.name, arrayBuffer);
+    const empleadoFormGroupValue = this.empleadoFormGroup.value;
     const formatDate = (dateOuput : string)  => {
       if (isNaN(Date.parse(dateOuput)+1)) {
         return null;
@@ -120,7 +111,7 @@ export class CreaEmpleadoComponent implements OnInit {
         return strDate;
       }
     }
-
+    // Se inicializa la instancia del empleado que se ingresó en el formulario
     this.empleado = {
       "usuario_id": null,
       "apellidos": empleadoFormGroupValue.apellidosControl as string,
@@ -131,7 +122,7 @@ export class CreaEmpleadoComponent implements OnInit {
       "tel": empleadoFormGroupValue.telControl as string | null,
       "tipo_documento": empleadoFormGroupValue.tipoDocumentoControl as string,
       "num_documento": empleadoFormGroupValue.numDocumentoControl as string,
-      "url_fotografia": this.empleadoFotografiaUrl,
+      "url_fotografia": IMGURL,
       "fecha_entrada": transformDateOutput(empleadoFormGroupValue.fechaEntradaControl as string) as string,
       "fecha_retiro": null
     };
