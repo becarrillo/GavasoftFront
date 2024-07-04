@@ -1,0 +1,25 @@
+<div class="flex flex-col px-1 py-1 absolute group">
+    <button [ngClass]="{'mt-3 h-8 mb-2.5': true}" id="burguerBtn" (mouseenter)="toggleDropdown()" (click)="toggleDropdown()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </button>
+    <ul [ngClass]="{
+            'hidden': isOpen===false,
+            'visible grid grid-rows-4 rounded-x-lg rounded-b-lg shadow-md shadow-zinc-100 bg-slate-300 opacity-95 divide-y-2 px-3 py-1 divide-slate-800': isOpen
+        }
+        "
+    >
+        <li class="flex py-3.5">
+            <div [ngClass]="['flex', 'space-x-3.5', 'px-1']">
+                <img [src]="'/../../../../assets/logo.png'" width="33" height="33" />
+                <h4 [ngClass]="['text-zinc-900', 'font-serif', 'font-semibold', 'mt-2']">GAVASOFT</h4>
+            </div>
+            
+        </li>
+        <li class="py-3.5 text-center text-zinc-900  hover:text-2-electric-blue"><a href="">Mi cuenta</a></li>
+        <li class="py-3.5 text-center text-zinc-900 hover:text-2-electric-blue"><a href="">Ir al inicio del Spa</a></li>
+        <li class="py-3.5 text-center text-zinc-900 hover:text-2-electric-blue"><button (click)="signOut()">Cerrar sesión</button></li>
+    </ul>
+</div>
+    

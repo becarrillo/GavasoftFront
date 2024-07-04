@@ -5,16 +5,17 @@ import { routes } from './app.routes';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { environment } from '../environments/environment.development';
+import { getAuth, provideAuth } from '@angular/fire/auth';
 
 export const appConfig: ApplicationConfig = {
   providers: [
   	provideRouter(routes),
   	provideHttpClient(),
-    importProvidersFrom(
-      provideFirebaseApp(() => initializeApp(
-          environment.firebaseInicializer
-        ))
-      ), importProvidersFrom(provideStorage(() => getStorage())
-    )
+    provideFirebaseApp(() => initializeApp(
+        environment.firebaseInicializer
+      )
+    ),
+    provideStorage(() => getStorage()),
+    provideAuth(() => getAuth())
   ]
 };

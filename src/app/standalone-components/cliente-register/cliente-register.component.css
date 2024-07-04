@@ -1,0 +1,54 @@
+:root {
+    --myUiIndigo: #004aad;
+    --myUiFuchsia: #cb6ce6;
+    --myUiCyan: #5ce1e6;
+}
+
+#sideA {
+    height: 100vh;
+}
+
+#submit {
+    background-color: #cb6ce6;
+}
+
+#forgot-psw {
+    color: darkcyan;
+}
+
+#forgot-psw:hover {
+    color: darkgoldenrod
+}
+
+.login-form-title {
+    font-family: 'Lato', sans-serif;
+}
+
+@media screen and (max-width: 767px) {
+    #container {
+        background: radial-gradient(var(--myUiIndigo), var(--myUiFuchsia));
+    }
+
+    #sideB {
+        background-size: cover;
+        background-image: url('../../../assets/modelo-de-ABADOD-Spa.jpg');
+        background-repeat: no-repeat;
+        width: auto;
+        height: 75.895vh;
+        margin-top: 2.5em;
+    }
+
+    #forgot-psw {
+        border-radius: 8px;
+        background-color: white;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #sideA {
+        background-size: cover;
+        background-image: url('../../../assets/modelo-de-ABADOD-Spa.jpg');
+        background-repeat: no-repeat;
+        width: auto;
+    }
+}

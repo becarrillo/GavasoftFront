@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Servicio } from '../models/Servicio';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,13 +18,20 @@ export class ServicioService {
     let data! : Servicio;
 
     this.httpClient.get<Servicio>(
-      "URI/some-path/"+servicioNombre,
+      "https://usuario-app-production.up.railway.app/some-path/"+servicioNombre,
       {
         headers
       }
     ).subscribe(s => data = s);
     
     return data;
+  }
+
+  listAll() : Observable<Servicio[]> {
+
+    return this.httpClient.get<Servicio[]>(
+      "http://localhost:8081/v1/usuarios/empleados/listar-servicios"
+    );
   }
 
   postServicio(servicio : Servicio) : Servicio {
@@ -33,7 +41,7 @@ export class ServicioService {
     headers.append("Content-Type", "application/json");
 
     this.httpClient.post<Servicio>(
-      "URI/some-path/post",
+      "http://localhost:8081/v1/usuarios/empleados/menu-administrador/admin-servicios/agregar/nuevo",
       servicio,
       {
         headers

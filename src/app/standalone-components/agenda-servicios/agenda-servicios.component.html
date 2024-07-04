@@ -1,0 +1,129 @@
+<app-logged-in-user-menu-navbar [rolName]="rol" [theme]="theme" (themeTogglerEvent)="toggleTheme($event)">
+</app-logged-in-user-menu-navbar>
+
+<div [ngClass]="{
+    'flex': true, 'justify-center': true, 'bg-zinc-700': theme==='dark',
+    'bg-white': theme==='light', 'mt-28': true, 'pt-4': true, 'gap-3': true,
+    'h-screen': true, 'md:mt-12': true, 'lg:mt-11': true, 'xl:mt-11': true,
+    '2xl:mt-10': true
+}
+">
+    <div class="flex flex-col rounded-lg justify-center items-center px-3 py-6 h-max-screen">
+        <div [ngClass]="{
+            'flex': true, 'flex-col': true, 'rounded-lg': true, 'bg-neutral-100': theme==='light',
+            'bg-zinc-600': theme==='dark', 'text-center': true, 'space-y-4': true, 'mb-8': true,
+            'px-1.5': true, 'py-3.5': true, 'w-9/12': true, 'md:w-5/6': true,  'lg:w-3/4': true,
+            'xl:w-full': true, '2xl:full': true
+        }">
+            <h2 [ngClass]="[
+                'text-sm', 'text-0-cool-gray', 'font-bold', 'md:text-md',
+                'lg:text-lg', 'xl:text-lg', '2xl:text-lg'
+            ]">
+                Bienvenido(a) 
+                <span class="italic">{{cookies.get('email')}}</span>
+            </h2>
+            <h1 [ngClass]="{
+                    'text-md font-semibold mx-3.5 mt-1 md:text-lg lg:text-xl xl:text-xl 2xl:text-xl': true,
+                    'text-white': theme==='dark'
+                }"
+            >
+                AGENDAR SERVICIO
+            </h1>
+        </div>
+        <form class="flex flex-col space-y-6 rounded-lg ring-1 ring-zinc-900 
+          bg-slate-300 justify-self-center p-7 w-10/12 md:w-5/6 
+          lg:w-3/4 xl:w-11/12 2xl:w-11/12">
+            <fieldset class=" grid grid-cols-2 gap-x-3.5 gap-y-3.5">
+                <div class="col-span-2 flex flex-col space-y-0.5 px-0.5">
+                    <legend class="">Información del agendamiento</legend>
+                    <hr [ngClass]="['bg-zinc-700', 'h-0.5']" />
+                </div>
+
+                <div class="flex flex-col-reverse space-y-2 px-0 5">
+                    <label [ngClass]="['text-xs', 'italic', 'ml-2']">fecha</label>
+                    <input type="date" [ngClass]="{
+                            'h-9 rounded-md outline-2 outline-amber-300 ring-1': true,
+                            'ring-stone-300 pl-2': true
+                        }" (change)="handFecha($event)" />
+                </div>
+
+                <div class="flex flex-col-reverse space-y-2 px-0 5">
+                    <label [ngClass]="['text-xs', 'italic', 'ml-2']">hora</label>
+                    <select name="time"
+                        id="myTime"
+                        [ngClass]="[
+                            'bg-white', 'h-9', 'rounded-md', 'outline-2', 'outline-amber-300', 'ring-1', 
+                            'my-0 5', 'focus-ring-2', 'focus:ring-heliotrope', 'ring-stone-300', 'px-2' 
+                        ]"
+                        formControlName="horaControl"
+                        (change)="handHora($event)"
+                    >
+                        <option value="08:00:00">08:00 A.M.</option>
+                        <option value="08:00:00">08:20 A.M.</option>
+                        <option value="08:40:00">08:40 A.M.</option>
+                        <option value="09:00:00">09:00 A.M.</option>
+                        <option value="09:20:00">09:20 A.M.</option>
+                        <option value="09:40:00">09:40 A.M.</option>
+                        <option value="10:00:00">10:00 A.M.</option>
+                        <option value="10:20:00">10:20 A.M.</option>
+                        <option value="10:40:00">10:40 A.M.</option>
+                        <option value="11:00:00">11:00 A.M.</option>
+                        <option value="11:20:00">11:20 A.M.</option>
+                        <option value="11:40:00">11:40 A.M.</option>
+                        <option value="13:20:00">01:20 P.M.</option>
+                        <option value="13:40:00">01:40 P.M.</option>
+                        <option value="14:00:00">02:00 P.M.</option>
+                        <option value="14:20:20">02:40 P.M.</option>
+                        <option value="14:40:00">03:00 P.M.</option>
+                        <option value="15:00:00">03:20 P.M.</option>
+                        <option value="15:20:00">03:40 P.M.</option>
+                        <option value="16:00:00">04:00 P.M.</option>
+                        <option value="16:20:00">04:20 P.M.</option>
+                        <option value="16:40:00">04:40 p.m.</option>
+                        <option value="17:00:00">05:00 p.m.</option>
+                        <option value="17:20:00">05:20 p.m.</option>
+                        <option value="17:40:00">05:40 p.m.</option>
+                    </select>
+                </div>
+
+                <div class="col-span-2 flex flex-col-reverse space-y-2 px-0 5">
+                    <label [ngClass]="['text-xs', 'italic', 'ml-2']">nombre del servicio</label>
+                    <select name="servicio" id="myServicio" class="
+                            bg-white h-9 rounded-md outline-2 outline-amber-300 ring-1 
+                            my-0 5 focus-ring-2 focus:ring-heliotrope
+                            ring-stone-300 px-2 
+                        " (change)="onServicioChange($event)">
+                        <option [ngClass]="'text-zinc-600'" [value]="null">Seleccionar servicio</option>
+                        @for(servicio of serviciosList; track servicio) {
+                            <option>{{servicio.servicioNombre}}</option>
+                        }
+                    </select>
+                </div>
+
+                <hr [ngClass]="'col-span-2'">
+
+                <div class="col-span-2 grid grid-rows-2 justify-self-center justify-items-center">
+                    <h3 [ngClass]="'font-semibold'">Cliente</h3>
+                    <p class="italic" id="cliente">Álvaro Hernandez Cabarcas</p>
+                    <p>CC 1143393849</p>
+                </div>
+
+                <button class="
+                        col-span-2 w-full h-10 rounded-md bg-green-600 text-center 
+                        text-white mx-auto py-1.5 hover:bg-teal-500
+                    " type="submit"
+                >
+                    GUARDAR
+                </button>
+            </fieldset>
+        </form>
+        <button [routerLink]="'/menu-administrador'" routerLinkActive="router-link-active" [ngClass]="[
+        'rounded-3xl', 'ring-2', 'ring-slate-200', 'bg-1-heliotrope', 'opacity-90',
+        'font-semibold', 'w-24', 'h-24', 'cursor-pointer', 'z-10', 'fixed', 'right-9',
+        'bottom-16', 'md:right-20', 'lg:right-48', 'xl:right-64', '2xl:right-72',
+        'hover:bg-cyan-500'
+    ]">
+            <h4>REGRESAR AL MENÚ</h4>
+        </button>
+    </div>
+</div>

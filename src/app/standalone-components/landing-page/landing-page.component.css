@@ -1,0 +1,40 @@
+:root {
+    --brand-purple: #cb6ce6
+}
+
+header {
+    border-bottom: 1px dotted var(--brand-purple);
+}
+
+.brand {
+    display: flex;
+    flex-direction: row;
+}
+
+.brand > img {
+    width: 36px;
+    height: 32px;
+}
+
+.brand > h2 {
+    vertical-align: top;
+    font-family: 'Maven Pro', sans-serif;
+}
+
+main h2 {
+    font-family: 'Lato', sans-serif;
+}
+
+#index-background {
+    background: radial-gradient(at right bottom, #004aad  38%, #cb6ce6 52%, white 10%);
+}
+
+
+
+@media screen and (min-width: 577px) {
+    .brand > img {
+        width: 45px;
+        height: 42px;
+        vertical-align: top;
+    }
+}

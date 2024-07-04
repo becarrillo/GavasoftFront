@@ -1,0 +1,128 @@
+<div class="flex flex-col h-screen overflow-y-auto" id="index-background">
+    <header class="flex pl-12 pr-0 pt-10 pb-4 fixed top-0 z-10 w-screen space-x-12 bg-white shadow-md shadow-slate-300">
+        <div
+            class="text-xl brand cursor-pointer pl-0 brand md:pl-1 md:w-72 lg:pl-5 w-56 lg:w-80 xl:pl-5 xl:w-80 2xl:pl-5 2xl:w-96">
+            <img src="../../../assets/ABADOD-Logo.svg" role="img" class="mt-2" id="brand-logo" />
+            <h2 class="flex ml-1 my-auto text-center text-lg md:text-xl lg:text-xl xl:text-2xl 2xl:text-3xl">
+                ABADOD SPA
+            </h2>
+        </div>
+        <nav class="flex ml-auto my-auto w-7/12 h-9 mr-2 pr-1.5 invisible md:visible md:pr-0.5
+                  lg:visible lg:pr-2 xl:visible xl:pr-2 2xl:visible 2xl:pr-3" role="navigation">
+
+            <ul class="flex self-center px-2 w-full h-7 text-sm font-light md:justify-between md:text-sm lg:justify-between
+                      lg:text-md xl:justify-between xl:text-lg 2xl:justify-between 2xl:text-lg" id="nav-ul">
+                <li class="cursor-pointer h-5 hover:origin-center hover:scale-110 hover:transition">
+                    <a class="hover:duration-200 hover:text-slate-700 hover:underline" href="/#">
+                        Nosotros
+                    </a>
+                </li>
+                <li class="cursor-pointer h-5 hover:origin-center hover:scale-110 hover:transition">
+                    <a class="hover:duration-200 hover:text-slate-700 hover:underline" href="/#">
+                        Misión
+                    </a>
+                </li>
+                <li
+                    class="cursor-pointer h-5 hover:origin-center hover:translate-y-0.5 hover:scale-110 hover:transition">
+                    <a class="hover:duration-200 hover:text-slate-700 hover:underline" href="/#">
+                        Visión
+                    </a>
+                </li>
+                <li
+                    class="cursor-pointer h-5 hover:origin-center hover:translate-y-0.5 hover:scale-110 hover:transition">
+                    <a class="hover:duration-200 hover:text-slate-700 hover:underline" href="./servicios.html">
+                        Servicios
+                    </a>
+                </li>
+                <li class="flex flex-col space-y-11 cursor-pointer">
+                    <button type="button" role="button"
+                        class="flex flex-col rounded-xl w-8 h-11 hover:bg-gray-100 active:scale-110 active:bg-gray-200"
+                        id="login-drop-btn" aria-expanded="true" aria-haspopup="true"
+                        onmouseenter="document.querySelector('#menu-container').removeAttribute('hidden')" onmouseleave="
+                                var userMenu = document.querySelector('#menu-container');
+                                userMenu.setAttribute('hidden', 'true');
+                                userMenu.addEventListener('mouseover', () => {
+                                    userMenu.removeAttribute('hidden')
+                                });
+                                userMenu.addEventListener('mouseleave', () => {
+                                    userMenu.setAttribute('hidden', 'true')
+                                });
+                            " onclick="document.querySelector('#menu-container').toggleAttribute('hidden')">
+                        <span class="medium material-icons mx-auto">account_circle</span>
+                        <i class="small material-icons mx-auto">arrow_drop_down</i>
+                    </button>
+                    <div class="absolute right-0 z-10 mr-8 mt-2 w-36 origin-top-right divide-y divide-slate-200 rounded-md bg-white shadow-md
+                              2xl:mr-56 shadow-slate-100 ring-1 ring-black ring-opacity-5 focus:outline-none"
+                        role="menu" aria-orientation="vertical" aria-labelledby="login-drop-btn" id="menu-container"
+                        hidden tabindex="-1">
+                        <div class="py-1 bg-cyan-700 justify-center rounded-md" role="none">
+                            @if (!email) {
+                            <button [ngClass]="['ml-4','text-center', 'text-sm', 'text-white']">
+                                <a [routerLink]="'/login'">
+                                    Iniciar sesión
+                                </a>
+                            </button>
+                            } @else {
+                                <h5 class="text-white block px-4 py-2 text-sm">
+                                    {{email}}
+                                </h5>
+                            }
+                        </div>
+                        <ul class="py-1" role="none">
+                            @if (email) {
+                            <li>
+                                <p
+                                    class="text-gray-700 block px-4 py-2 text-sm hover:bg-slate-100" role="menuitem"
+                                    tabindex="-1" id="menu-item-0">
+                                    Mi menú
+                                </p>
+                            </li>
+                            <li class="py-1">
+                                <button class="text-gray-700 block px-4 py-2 text-sm hover:bg-slate-100" role="menuitem"
+                                    tabindex="-1" id="menu-item-1" (click)="signOut()">
+                                    Cerrar sesión
+                                </button>
+                            </li>
+                            } @else {
+                            <li class="py-1">
+                                <a class="text-gray-700 block px-4 py-2 text-sm hover:bg-slate-100" role="menuitem"
+                                    tabindex="-1" id="menu-item-1">
+                                    Registrarse
+                                </a>
+                            </li>
+                            }
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main class="grid grid-rows-2 mx-9 px-9 mt-5 pt-4 place-items-center space-y-3.5">
+        <section class="flex flex-col mt-44 px-6 pt-8 space-y-2 rounded-md bg-white w-80
+                  h-60 opacity-75 shadow-md shadow-zinc-400">
+            <div class="flex space-x-2">
+                <h2 class="font-semibold text-4xl">
+                    GAVASOFT
+                </h2>
+                <img role="icon" src="../../../assets/Gavasoft-Logo.svg" width="44" />
+            </div>
+            <p class="text-sm">
+                Descubre una nueva forma de agendarte, adquirir servicios
+                y/o<br>administrar tareas del servicio<br>que presta
+                <strong>ABADOD</strong> a través del<br>Software de Gestión
+                Ventas de Servicios de Spa.
+            </p>
+        </section>
+        <button type="button"
+            class="rounded-lg ring-2 ring-fuchsia-500 bg-indigo-700 px-3 py-1 text-white w-80 h-9 hover:bg-indigo-600">
+            REGISTRARSE
+        </button>
+    </main>
+    <button class="rounded-3xl w-14 h-14 pt-1 self-end fixed bottom-8 z-10
+          mr-12 ring-1 ring-cyan-500 bg-slate-900 text-2xl text-yellow-200 
+          hover:scale-105 hover:ring-2 hover:ring-fuchsia-300 active:bg-zinc-700">
+        <span class="medium material-icons">
+            shopping_cart
+        </span>
+    </button>
+</div>

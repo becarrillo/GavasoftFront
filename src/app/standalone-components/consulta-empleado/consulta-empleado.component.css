@@ -1,0 +1,5 @@
+.modal-delete {
+    backdrop-filter: blur(16px);
+    opacity: 1;
+    background-color: rgb(240, 216, 199);
+}

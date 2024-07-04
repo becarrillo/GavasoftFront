@@ -1,7 +1,8 @@
 export interface Agendamiento {
-    "agendamientoId": string,
+    "agendamientoId"?: string,
     "fechaHora": string,
     "servicioId": string,
-    "estado": string,
-    "carritoDeComprasId": string | null
+    "usuarioClienteId"?: number,
+    "estado"?: string,
+    "carritoDeComprasId"?: string | null
 }

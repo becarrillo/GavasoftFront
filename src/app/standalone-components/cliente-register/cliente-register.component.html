@@ -1,0 +1,88 @@
+<div class="grid grid-cols-1 h-screen md:h-full md:bg-neutral-200 
+        lg:h-full lg:grid-cols-4 xl:h-full xl:grid-cols-4 2xl:h-full
+        2xl:grid-cols-4 "
+    id="container"
+>
+    <div class="collapse md:visible md:col-span-2 lg:visible lg:col-span-2 
+              xl:visible xl:col-span-2 2xl:col-span-2" id="sideA">
+        <div class="flex justify-end mr-4 mt-1">
+            <button class="mr-5 h-6 rounded-md">
+
+            </button>
+            <ul class="flex text-indigo-600">
+                <li>
+                    <a [routerLink]="'/'">
+                        Home
+                    </a>
+                </li>
+                <li><span class="ml-1 text-zinc-600">/ Registrarse</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="absolute top-0 left-0 right-0 md:right-0 md:col-span-2 lg:relative 
+              lg:col-span-2 xl:relative xl:col-span-2 2xl:relative 2xl:col-span-2" id="sideB">
+        <div class="flex min-h-full flex-col justify-center px-6 py-7 md:py-20 lg:px-8 lg:py-11 xl:py-12 2xl:py-12">
+            <div class="mb-3.5 sm:mx-auto sm:w-full sm:max-w-sm">
+                <img class="mx-auto w-auto h-16 rounded-sm" src="./assets/Gavasoft-Logo.svg" alt="Abadod" />
+                <h2 class="mt-10 rounded-lg bg-neutral-200 opacity-60 w-44 mx-auto text-center text-3xl 
+                          text-black font-semibold login-form-title leading-9 tracking-tight 
+                          lg:bg-transparent lg:text-zinc-900 lg:opacity-100 xl:bg-transparent 
+                          xl:opacity-100 xl:text-zinc-900 2xl:bg-transparent 2xl-opacity:100 
+                          2xl-text-zinc-900">
+                    REGISTRO
+                </h2>
+            </div>
+
+            <div class="mt-2 sm:mx-auto sm:w-full sm:max-w-sm">
+                <form class="flex flex-col space-y-5" [formGroup]="registerGroup" (submit)="onSubmit($event)">
+                    <fieldset class="grid grid-cols-2 grid-rows-4 gap-5">
+                        <input type="text" formControlName="apellidosControl" placeholder="Apellidos"
+                            class="rounded-md ring-1 ring-inset ring-gray-300 w-11/12 h-10 mx-auto text-center" />
+                        <input type="text" formControlName="nombreControl" placeholder="Nombre"
+                            class="rounded-md ring-1 ring-inset ring-gray-300 w-11/12 h-10 mx-auto text-center" />
+                        <input id="email" name="email" type="email" autocomplete="email" formControlName="emailControl"
+                            placeholder="Correo electrónico"
+                            required
+                            class="
+                                rounded-md w-11/12 h-10 mx-auto text-center border-0
+                                px-2 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300
+                                placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+                                focus:ring-indigo-600 sm:text-sm sm:leading-6
+                            "
+                        />
+                        <input type="tel" formControlName="telControl" placeholder="Teléfono"
+                            class="rounded-md ring-1 ring-inset ring-gray-300 w-11/12 mx-auto h-10 text-center" />
+                        <input type="password" formControlName="passwordControl" placeholder="Contraseña"
+                            class="rounded-md ring-1 ring-inset ring-gray-300 w-11/12 mx-auto h-10 text-center" />
+                        <input type="password" formControlName="confirmPswControl" placeholder="Confirmar contraseña"
+                            class="rounded-md ring-1 ring-inset ring-gray-300 w-11/12 mx-auto h-10 text-center" />
+                        <div class="col-span-2 flex space-x-3 px-2 py-1">
+                            <input type="radio" class="w-7 h-7 mx-auto" id="dataAuthorization" (mousedown)="setDataAuth()" />
+                            <label for="dataAuthorization" class="flex rounded-sm px-2 py-1.5 bg-neutral-300 opacity-60 text-sm">¿Usted autoriza el tratamiento de sus datos a ABADOD?</label>
+                        </div>
+                            
+                    </fieldset>
+
+                    <button id="submit" type="submit" class="flex w-full h-10 justify-center self-center rounded-3xl 
+                              px-3 py-2 leading-6 text-lg text-white shadow-sm 
+                              md:py-1.5 lg:py-1.5 lg:text-xl xl:py-1.5 
+                              xl:text-xl 2xl:py-1.5 2xl:text-xl">
+                        GUARDAR
+                    </button>
+
+                    <div class="flex space-x-9 justify-center px-2 h-8 bg-neutral-200 opacity-70 lg:bg-transparent">
+                        <hr class="my-auto w-40 h-0.5 bg-zinc-900">
+                        <small class="mx-auto my-auto">O</small>
+                        <hr class="my-auto w-40 h-0.5 bg-zinc-900">
+                    </div>
+
+                    <fieldset class="flex flex-col self-center">
+                        <button
+                            class="h-10 mx-auto px-7 justify-center rounded-3xl bg-blue-800 text-white hover:transition hover:delay-100 hover:ease-out hover:duration-200 hover:-skew-x-2 hover:scale-110 hover:bg-blue-600 hover:text-amber-200">Ingresar
+                            con Google</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

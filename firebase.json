@@ -1,9 +1,11 @@
 {
-  "hosting": [
-    {
-      "target": "gavasoft-front",
-      "source": ".",
-      "frameworksBackend": {}
-    }
-  ]
+  "hosting": {
+    "public": "dist/gavasoft-front/browser",
+    "target": "gavasoft-front",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
 }

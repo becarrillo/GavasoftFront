@@ -1,0 +1,255 @@
+<app-logged-in-user-menu-navbar [rolName]="'Administrador'" [theme]="theme" (themeTogglerEvent)="toggleTheme($event)">
+</app-logged-in-user-menu-navbar>
+<div [ngClass]="{
+        'flex': true, 'justify-center': true, 'bg-zinc-700': theme==='dark',
+        'bg-white': theme==='light', 'mt-28': true, 'pt-4': true, 'gap-3': true,
+        'h-full': true, 'md:mt-12': true, 'lg:mt-11': true, 'xl:mt-11': true,
+        '2xl:mt-10': true
+    }
+">
+    <div class="flex flex-col rounded-lg justify-center items-center px-3 py-6 h-max-screen">
+        <div [ngClass]="{
+                'flex': true, 'flex-col': true, 'rounded-lg': true, 'bg-neutral-100': theme==='light',
+                'bg-zinc-600': theme==='dark', 'text-center': true, 'space-y-4': true, 'mb-8': true,
+                'px-1.5': true, 'py-3.5': true, 'w-9/12': true, 'md:w-5/6': true,  'lg:w-3/4': true,
+                'xl:w-full': true, '2xl:full': true
+            }">
+            <h2 [ngClass]="[
+                    'text-sm', 'text-0-cool-gray', 'font-bold', 'md:text-md',
+                    'lg:text-lg', 'xl:text-lg', '2xl:text-lg'
+                ]">
+                Bienvenido(a)
+            </h2>
+            <h1 [ngClass]="{
+                    'text-white': theme==='dark', 'text-md font-semibold mx-3.5 mt-1': true,
+                    'md:text-lg lg:text-xl xl:text-xl 2xl:text-xl': true
+                }"
+            >
+                FORMULARIO DE REGISTRO - NUEVO EMPLEADO
+            </h1>
+        </div>
+        <form class="flex flex-col space-y-6 rounded-lg ring-1 ring-zinc-900 
+              bg-slate-300 justify-self-center px-7 py-10 w-10/12 md:w-5/6 
+              lg:w-3/4 xl:w-11/12 2xl:w-11/12"
+              [formGroup]="empleadoFormGroup"
+              (submit)="submitEmpleado($event)"
+        >
+            <fieldset class="grid grid-cols-2 grid-rows-3 gap-x-3.5 gap-y-8">
+                <legend class="mb-2 pl-1">Información básica</legend>
+                <div class="flex flex-col space-y-1">
+                    <input type="text" [ngClass]="{
+                            'h-8 rounded-md outline-2 outline-amber-300 ring-1 ring-stone-300 pl-2 focus:scale-105': true
+                        }"
+                        formControlName="apellidosControl"
+                        id="apellidosControl"
+                        placeholder="apellidos"
+                    />
+                    @if (empleadoFormGroup.controls.apellidosControl.dirty && empleadoFormGroup.controls.apellidosControl.invalid) {
+                        <span [ngClass]="['text-sm text-red-500']">
+                            El conjunto de apellidos debe ser como mínimo de 12 letras y máximo de 33 letras
+                        </span>
+                    }
+                </div>
+                <div class="flex flex-col space-y-1">
+                    <input type="text" [ngClass]="{
+                            'h-8 rounded-md outline-2 outline-amber-300 ring-1 ring-stone-300 pl-2 focus:scale-105': true
+                            }
+                        "
+                        formControlName="nombreControl"
+                        id="nombreControl"
+                        placeholder="nombre"
+                    />
+                    @if (empleadoFormGroup.controls.nombreControl.dirty && empleadoFormGroup.controls.nombreControl.invalid) {
+                        <span [ngClass]="['text-sm text-red-500']">
+                            El nombre debe debe ser como mínimo de 3 letras y máximo de 30 letras
+                        </span>
+                    }
+                </div>
+                <div class="flex flex-col space-y-1">
+                    <input type="email" [ngClass]="{
+                            'h-8 rounded-md outline-2 outline-amber-300 ring-1 ring-stone-300 pl-2 focus:scale-105': true
+                            }
+                        "
+                        formControlName="emailControl"
+                        id="emailControl"
+                        placeholder="correo electrónico"
+                    />
+                    @if (empleadoFormGroup.controls.emailControl.dirty && empleadoFormGroup.controls.emailControl.invalid) {
+                        <span [ngClass]="['text-sm text-red-500']">
+                            El correo no es válido, no termina con el patrón '&#64;' + dominio
+                        </span>
+                    }
+                </div>
+                <div class="flex flex-col space-y-1">
+                    <input type="tel"
+                        [ngClass]="{
+                                'h-8 rounded-md outline-2 outline-amber-300 ring-1 ring-stone-300 pl-2 focus:scale-105': true
+                            }
+                        "
+                        formControlName="telControl"
+                        id="telControl"
+                        placeholder="teléfono"
+                    />
+                    @if (empleadoFormGroup.controls.telControl.dirty && empleadoFormGroup.controls.telControl.invalid) {
+                        <span [ngClass]="['text-sm text-red-500']">
+                            El teléfono debe ser máximo de 15 dígitos
+                        </span>
+                    }
+                </div>
+                <div class="flex flex-col space-y-1">
+                    <select
+                        name="document-id-type"
+                        id="tipoDocumentoControl"
+                        [ngClass]="'h-8'"
+                        formControlName="tipoDocumentoControl"
+                    >
+                        <option value="CC">cédula de ciudadanía</option>
+                        <option value="CON">contraseña</option>
+                        <option value="CEX">cédula de extranjería</option>
+                        <option value="PASAPORTICO">pasaporte</option>
+                    </select>
+                    <label for="tipoDocumentoControl" class="text-xs italic ml-auto">tipo de documento</label>
+                    @if (empleadoFormGroup.controls.tipoDocumentoControl.dirty && empleadoFormGroup.controls.tipoDocumentoControl.invalid) {
+                        <span [ngClass]="['text-sm text-red-500']">
+                            El tipo de documento debe ser máximo de 3 dígitos
+                        </span>
+                    }
+                </div>
+                
+                <div class="flex flex-col space-y-1">
+                    <input type="tel"
+                        [ngClass]="{
+                            'h-8 rounded-md outline-2 outline-amber-300 ring-1 ring-stone-300 pl-2 focus:scale-105': true
+                        }"
+                        formControlName="numDocumentoControl"
+                        id="numDocumentoControl"
+                        placeholder="número de documento"
+                    />
+                    @if (empleadoFormGroup.controls.numDocumentoControl.dirty && empleadoFormGroup.controls.numDocumentoControl.invalid) {
+                        <span [ngClass]="['text-sm text-red-500']">
+                            El teléfono debe ser máximo de 15 dígitos
+                        </span>
+                    }
+                </div>
+                
+                <div class="col-span-2 flex flex-col p-1 5">
+                    <h4 [ngClass]="['flex', 'ml-0.5', 'italic']" for="rolControl">
+                        Rol del empleado
+                    </h4>
+                    <div class="grid grid-cols-2 gap-x-1.5 px-2 py-3.5">
+                        <div class="flex px-3 py-1 space-x-3">
+                            <input type="radio" name="rol" id="asNull" (mousedown)="setRol($event)" checked />
+                            <label for="asNull">NULL</label>
+                        </div>
+                        <div class="flex px-3 py-1 space-x-3">
+                            <input type="radio" name="rol" id="asesor" (mousedown)="setRol($event)" value="asesor"/>
+                            <label for="asesor">asesor</label>
+                        </div>
+                        <div class="flex px-3 py-1 space-x-3">
+                            <input type="radio" name="rol" id="administrador" (mousedown)="setRol($event)" value="administrador"/>
+                            <label for="administrador">administrador</label>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <hr class="h-0.5 bg-zinc-500">
+            <fieldset class="inline-block">
+                <div class="flex flex-col">
+                    <label [ngClass]="['ml-0.5', 'italic']" for="fotografiaInput">
+                    	Fotografía en formato .jpg, .jpeg o .png
+                    </label>
+                    <input
+                        type="file"
+                        accept="image/.jpg, image/.jpeg, image/.png"
+                        class="h-8 outline-2 outline-amber-300 pl-2 ring-1 ring-stone-300"
+                        id="fotografiaInput"
+                        name="fotografia-input"
+                        (change)="setFotografiaInputTarget($event)"
+                    />
+                </div>
+            </fieldset>
+            <hr class="h-0.5 bg-zinc-500">
+            <fieldset class="grid grid-rows-1 gap-y-6">
+                <legend class="mb-2">Fechas importantes dentro de la organización</legend>
+                <div class="flex flex-col-reverse">
+                    <label [ngClass]="['ml-0.5', 'italic']" for="fechaEntradaControl">
+                    	<small>Fecha de entrada/ingreso</small>
+                    </label>
+                    <input
+                    	type="date"
+                    	class="h-8 outline-2 outline-amber-300 pl-2 ring-1 ring-stone-300"
+                    	id="fechaEntradaControl"
+                    	formControlName="fechaEntradaControl"
+                    />
+                </div>
+            </fieldset>
+            <hr class="h-0.5 bg-zinc-500">
+            <fieldset class="flex flex-col gap-y-8">
+                <div class="flex flex-col space-y-1">
+                    <input type="password" [ngClass]="{
+                            'h-9 rounded-md outline-2 outline-amber-300 ring-1 ring-stone-300 pl-2 focus:scale-105': true
+                            }
+                        "
+                        formControlName="passwordControl"
+                        id="passwordControl"
+                        placeholder="Contraseña"
+                    />
+                    @if (empleadoFormGroup.controls.passwordControl.dirty && empleadoFormGroup.controls.passwordControl.invalid) {
+                        <span [ngClass]="['w-auto','text-sm text-red-500', 'z-10']">
+                            No es una contraseña válida, asegúrese sea mínimo de 8 caracteres:<br> al menos 1 símbolo, una letra 
+                            mayúscula y una letra minúscula
+                        </span>
+                    }
+                </div>
+                <div class="flex flex-col space-y-1">
+                    <input type="password"
+                        [ngClass]="{
+                            'h-9 rounded-md outline-2 outline-amber-300 ring-1 ring-stone-300 pl-2 focus:scale-105': true
+                            }
+                        "
+                        formControlName="confirmPasswordControl"
+                        id="confirmPasswordControl"
+                        placeholder="Confirmar contraseña"
+                    />
+                    @if (empleadoFormGroup.controls.confirmPasswordControl.value!==empleadoFormGroup.controls.passwordControl.value) {
+                        <span [ngClass]="['w-auto', 'text-sm text-red-500']">La contraseña no coincide</span>
+                    }
+                    @if (
+                        empleadoFormGroup.controls.confirmPasswordControl.dirty &&
+                        empleadoFormGroup.controls.confirmPasswordControl.invalid
+                    ) {
+                        <span [ngClass]="['w-auto', 'text-sm', 'text-red-500']">
+                            No es una contraseña válida, asegúrese sea mínimo de 8 caracteres:<br> al menos
+                            1 símbolo, una letra mayúscula y una letra minúscula
+                        </span>
+                    }
+                </div>
+                
+            </fieldset>
+            <button [ngClass]="{
+                    'py-1.5': true,
+                    'w-full h-10 rounded-md': true, 'bg-green-600 text-center text-white hover:bg-teal-500': empleadoFormGroup.valid && fileItem && 
+                    empleadoFormGroup.controls.confirmPasswordControl.value===empleadoFormGroup.controls.passwordControl.value,
+                    'disabled:cursor-default': true,
+                    'bg-neutral-300 text-zinc-700': empleadoFormGroup.invalid || 
+                    !fileItem || empleadoFormGroup.controls.confirmPasswordControl.value!==empleadoFormGroup.controls.passwordControl.value
+                }"
+                type="submit"
+                id="submit"
+                [disabled]="
+                    empleadoFormGroup.pristine || empleadoFormGroup.invalid || !fileItem || empleadoFormGroup.controls.confirmPasswordControl.value!==empleadoFormGroup.controls.passwordControl.value
+                "
+            >
+            	ENVIAR
+            </button>
+        </form>
+        <button [routerLink]="'/menus/menu-administrador'" routerLinkActive="router-link-active" [ngClass]="[
+            'rounded-3xl', 'ring-2', 'ring-slate-200', 'bg-1-heliotrope', 'opacity-90',
+            'font-semibold', 'w-24', 'h-24', 'cursor-pointer', 'z-10', 'fixed', 'right-9',
+            'bottom-16', 'md:right-20', 'lg:right-48', 'xl:right-64', '2xl:right-72',
+            'hover:bg-cyan-500'
+        ]">
+            <h4>REGRESAR AL MENÚ</h4>
+        </button>
+    </div>
+</div>

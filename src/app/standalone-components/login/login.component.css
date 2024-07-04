@@ -1,0 +1,59 @@
+:root {
+    --myUiIndigo: #004aad;
+    --myUiFuchsia: #cb6ce6;
+    --myUiCyan: #5ce1e6;
+    --myGavasoft: url('../../../assets/Gavasoft-Logo.svg')
+}
+
+#sideA {
+    width: 100%;
+    height: 100vh;
+}
+
+#submit {
+    background-color: darkcyan;
+}
+
+#forgot-psw {
+    color: darkcyan;
+}
+
+#forgot-psw:hover {
+    color: lightseagreen
+}
+
+#submit:hover {
+    background-color: lightseagreen;
+}
+
+.login-form-title {
+    font-family: 'Lato', sans-serif;
+}
+
+@media screen and (max-width: 767px) {
+    body > #container {
+        background: radial-gradient(var(--myUiIndigo), var(--myUiFuchsia))
+    }
+
+    #sideB {
+        background-size: cover;
+        background-image: var(--myGavasoft);
+        background-repeat: no-repeat;
+        width: auto;
+        height: 88vh;
+        margin-top: 2.5em;
+    }
+
+    #forgot-psw {
+        border-radius: 8px;
+        background-color: white;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #sideA {
+        background-size: cover;
+        background-image: url('../../../assets/SPA-relationship.png');
+        background-repeat: no-repeat;
+    }
+}
